@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To Be Father – L’app copilote de la paternité</title>
+  <meta name="description" content="To Be Father accompagne les pères dès la grossesse jusqu’aux premières années. IA spécialisée, checklists, conseils experts. Lancement juillet 2026.">
+  <meta property="og:title" content="To Be Father – L’app copilote de la paternité">
+  <meta property="og:description" content="IA spécialisée, checklists, conseils experts. Lancement juillet 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0B1B2B",
+            bleuNuit: "#0E2740",
+            primary: "#2357AA",
+            indigoOcean: "#3C4BD9",
+            gradientStart: "#2F80ED",
+            gradientMid: "#5A7BEF",
+            gradientEnd: "#6C63FF",
+            textDark: "#0E1622",
+            textSoft: "#4B5563",
+            surface: "#FFFFFF",
+            page: "#F7FAFC",
+            success: "#10B981",
+            warning: "#F59E0B",
+            danger: "#EF4444"
+          },
+          borderRadius: { xl: "0.875rem", "2xl": "1.25rem" },
+          boxShadow: {
+            soft: "0 10px 25px rgba(0,0,0,0.08)",
+            lift: "0 12px 30px rgba(35,87,170,0.15)"
+          },
+          keyframes: {
+            floaty: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-6px)" } }
+          },
+          animation: { floaty: "floaty 8s ease-in-out infinite" }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { background:#F7FAFC; color:#0E1622; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    .container-12 { max-width: 78rem; margin-inline: auto; padding-inline: 1rem; }
+    .card { background: #FFFFFF; border: 1px solid rgba(11,27,43,0.06); border-radius: 1.25rem; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; border-radius:1rem; padding:.8rem 1.25rem; font-weight:600; transition:.18s transform, .18s box-shadow, .18s opacity; }
+    .btn-primary { color:#fff; background: linear-gradient(90deg, #2F80ED, #5A7BEF, #6C63FF); box-shadow: 0 10px 20px rgba(108,99,255,.18); }
+    .btn-primary:hover { transform: translateY(-1px) scale(1.01); box-shadow: 0 14px 28px rgba(108,99,255,.25); }
+    .btn-ghost { color:#3C4BD9; background: transparent; }
+    .btn-ghost:hover { background: rgba(60,75,217,0.08); }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; border-radius:.75rem; padding:.35rem .65rem; font-size:.85rem; background: rgba(60,75,217,.08); color:#3C4BD9; border: 1px solid rgba(60,75,217,.18); }
+    .section { padding-block: 5.5rem; }
+    .nav-link { color:#0E1622; opacity:.75 }
+    .nav-link:hover { opacity:1 }
+    .focus-ring:focus { outline: 3px solid #3C4BD9; outline-offset: 2px; }
+    header.sticky { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(11,27,43,.06); }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a href="#content" class="sr-only focus-ring">Aller au contenu</a>
+
+  <!-- Header with centered logo -->
+  <header class="sticky">
+    <div class="container-12 py-3">
+      <div class="flex items-center justify-center">
+        <!-- Inline SVG logo (replace with <img src="logo.png" ...> if you prefer) -->
+        <a href="#top" class="flex items-center gap-3" aria-label="To Be Father">
+          <svg width="44" height="44" viewBox="0 0 128 128" class="rounded-xl shadow-soft">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2F80ED"/>
+                <stop offset="0.5" stop-color="#5A7BEF"/>
+                <stop offset="1" stop-color="#6C63FF"/>
+              </linearGradient>
+            </defs>
+            <rect width="128" height="128" rx="24" fill="url(#g)"/>
+            <text x="50%" y="58%" text-anchor="middle" font-family="Poppins, Arial" font-size="60" fill="white">T</text>
+            <text x="50%" y="88%" text-anchor="middle" font-family="Poppins, Arial" font-size="30" fill="white">BF</text>
+          </svg>
+          <span class="font-[Poppins] text-xl font-semibold tracking-wide">To Be Father</span>
+        </a>
+      </div>
+      <nav class="mt-3 hidden md:flex items-center justify-center gap-6 text-sm" aria-label="Navigation principale">
+        <a href="#application" class="nav-link">Application</a>
+        <a href="#media" class="nav-link">Média</a>
+        <a href="#prix" class="nav-link">Prix</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#partenariats" class="nav-link">Partenariats</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#waitlist" class="btn btn-primary">Liste d’attente</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <!-- HERO -->
+    <section id="top" class="relative section overflow-hidden">
+      <div aria-hidden="true" class="absolute -z-10 inset-0">
+        <div class="absolute -top-24 -left-20 h-80 w-80 rounded-full blur-3xl opacity-40 animate-floaty" style="background: radial-gradient(closest-side, #E8F1FF, transparent)"></div>
+        <div class="absolute top-20 right-0 h-96 w-[36rem] rounded-full blur-3xl opacity-50 animate-floaty" style="background: radial-gradient(closest-side, #ECEAFF, transparent)"></div>
+      </div>
+      <div class="container-12 text-center">
+        <p class="badge inline-flex">Lancement: juillet 2026 · iOS & Android</p>
+        <h1 class="font-[Poppins] text-4xl md:text-6xl font-bold mt-6">La première application copilote de la paternité.</h1>
+        <p class="text-lg text-textSoft mt-4 max-w-2xl mx-auto">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="#waitlist" class="btn btn-primary">Rejoindre la liste d’attente</a>
+          <a href="#media" class="btn btn-ghost">Découvrir le média</a>
+        </div>
+        <div class="mt-8 flex gap-3 justify-center">
+          <span class="badge">iOS & Android</span>
+          <span class="badge">Lancement: juillet 2026</span>
+        </div>
+        <div class="container-12 mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="badge justify-center">IA spécialisée</div>
+          <div class="badge justify-center">Checklists & rappels personnalisés</div>
+          <div class="badge justify-center">Conseils médicaux, juridiques et pratiques</div>
+          <div class="badge justify-center">Soutien émotionnel</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application -->
+    <section id="application" class="section">
+      <div class="container-12">
+        <div class="text-center max-w-3xl mx-auto">
+          <p class="text-sm uppercase tracking-wide text-textSoft">📱 L’Application To Be Father</p>
+          <h2 class="font-[Poppins] text-3xl md:text-4xl font-bold mt-2">Votre copilote de la paternité</h2>
+          <p class="text-textSoft mt-3">IA spécialisée, conseils d’experts et checklists personnalisées pour chaque étape — de l’annonce de la grossesse aux premières années.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 mt-10">
+          <div class="card p-6">
+            <p>To Be Father est la première application copilote de la paternité. Grâce à une IA spécialisée, elle accompagne les futurs et jeunes pères dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
+            <ul class="mt-4 space-y-2 list-disc list-inside text-textSoft">
+              <li>Conseils médicaux, juridiques et pratiques</li>
+              <li>Checklists et rappels personnalisés</li>
+              <li>Soutien émotionnel et (à terme) espace communautaire</li>
+            </ul>
+            <p class="mt-4 badge">Sortie prévue: juillet 2026 · iOS & Android</p>
+          </div>
+          <div class="grid gap-4">
+            <div class="card p-5"><strong>IA personnalisée</strong> — Réponses adaptées à votre situation (illimitée en Premium).</div>
+            <div class="card p-5"><strong>Suivi & checklists</strong> — Grossesse → premières années, pour ne rien oublier.</div>
+            <div class="card p-5"><strong>Conseils en temps réel</strong> — Contenus validés par des professionnels.</div>
+            <div class="card p-5"><strong>Communauté</strong> — Espace d’échange prévu.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Média -->
+    <section id="media" class="section">
+      <div class="container-12 grid md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <h2 class="font-[Poppins] text-2xl font-bold">Le Média To Be Father</h2>
+          <p class="mt-2 text-textSoft">Plus qu’une app, To Be Father est aussi un média engagé. Nous brisons les tabous, partageons des témoignages et donnons la parole aux experts.</p>
+          <ul class="mt-4 list-disc list-inside text-textSoft">
+            <li>Interviews de spécialistes</li>
+            <li>Réels éducatifs et inspirants</li>
+            <li>Contenus dédiés aux papas et à leur vie pro/perso</li>
+          </ul>
+          <a class="btn btn-ghost mt-4" href="https://www.instagram.com/tobefather.off" target="_blank" rel="noopener">Suivre @tobefather.off</a>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-[Poppins] font-semibold">Témoignages</h3>
+          <p class="mt-2 text-textSoft">“Enfin un projet pensé pour les pères. Hâte de l’utiliser au quotidien !” — Alexandre</p>
+          <hr class="my-4 border-slate-200" />
+          <p class="text-textSoft">“Clair, rassurant, utile. J’aurais aimé l’avoir pour mon premier enfant.” — Mehdi</p>
+          <hr class="my-4 border-slate-200" />
+          <p class="text-textSoft">“Le média dédramatise et informe sans juger.” — Thomas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prix -->
+    <section id="prix" class="section">
+      <div class="container-12">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="font-[Poppins] text-3xl md:text-4xl font-bold">Prix & abonnements</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 mt-8">
+          <div class="card p-6">
+            <h3 class="font-[Poppins] text-2xl font-bold">Gratuit</h3>
+            <p class="text-textSoft mt-2">Accès aux fonctionnalités essentielles + IA (jusqu’à 5 questions/jour).</p>
+            <p class="text-4xl font-bold mt-6">0 €</p>
+            <a href="#waitlist" class="btn btn-primary mt-6">Être informé du lancement</a>
+          </div>
+          <div class="card p-6 border-2" style="border-color:#6C63FF">
+            <h3 class="font-[Poppins] text-2xl font-bold">Premium</h3>
+            <p class="text-textSoft mt-2">Accès illimité & fonctionnalités avancées.</p>
+            <p class="text-4xl font-bold mt-6">4,39 € <span class="text-base font-medium">/ mois</span></p>
+            <p class="text-textSoft">Annuel: 35,99 € (3,59 €/mois, remise 20%).</p>
+            <ul class="mt-4 list-disc list-inside text-textSoft">
+              <li>IA personnalisée illimitée</li>
+              <li>Suivi avancé & checklists</li>
+              <li>Contenus & outils exclusifs</li>
+              <li>Rappels & partages (progressif)</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-primary mt-6">Être informé du lancement</a>
+          </div>
+        </div>
+        <div id="waitlist" class="mt-8 card p-6">
+          <h3 class="font-[Poppins] text-2xl font-bold">Rejoindre la liste d’attente</h3>
+          <form onsubmit="event.preventDefault(); this.outerHTML='<p class=\\'p-4 rounded-xl bg-green-50 border border-green-200 text-green-800\\'>Merci ! Nous vous tiendrons informé·e du lancement.</p>';">
+            <input required placeholder="Nom" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2" />
+            <input required type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2" />
+            <label class="flex gap-2 text-sm text-textSoft my-2"><input type="checkbox" required/> J’accepte la politique de confidentialité.</label>
+            <button class="btn btn-primary">Rejoindre</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenariats -->
+    <section id="partenariats" class="section">
+      <div class="container-12 grid md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <h2 class="font-[Poppins] text-2xl font-bold">Partenariats & experts</h2>
+          <p class="text-textSoft">Nous collaborons avec des médecins et spécialistes (obstétriciens, sages-femmes, psychologues, sexologues, juristes…). Découvrez-les dans la story à la une “PRO TBF” sur Instagram.</p>
+          <p class="text-textSoft mt-3">Entreprises & institutions: contactez-nous pour proposer To Be Father à vos équipes. Partenariats mutuelles/institutions à venir (congé paternité, coûts famille…).</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-[Poppins] font-semibold">Proposer TBF à vos salariés</h3>
+          <p class="text-textSoft mt-2">Écrivez-nous, on en parle.</p>
+          <a href="#contact" class="btn btn-primary mt-4">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (complète) -->
+    <section id="faq" class="section">
+      <div class="container-12">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="font-[Poppins] text-3xl md:text-4xl font-bold">FAQ</h2>
+          <p class="text-textSoft mt-3">Questions fréquentes sur l’application, les prix, la vision, le média, les partenariats et la confidentialité.</p>
+        </div>
+        <div class="mt-8 grid md:grid-cols-2 gap-6">
+          <!-- Col 1 -->
+          <div class="space-y-3">
+            <details class="card p-4" open><summary class="cursor-pointer font-medium">Quand sortira l’application ?</summary><div class="mt-2 text-textSoft">Juillet 2026.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">iOS & Android ?</summary><div class="mt-2 text-textSoft">Oui (App Store & Google Play).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Utilisable dès la grossesse ?</summary><div class="mt-2 text-textSoft">Absolument — le contenu s’adapte dès l’annonce.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Espace pour échanger ?</summary><div class="mt-2 text-textSoft">Souhaité à terme — un espace communautaire est prévu.</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Version gratuite ?</summary><div class="mt-2 text-textSoft">Oui, essentiels + IA (5 questions/jour).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Prix premium ?</summary><div class="mt-2 text-textSoft">4,39 € / mois.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Que comprend l’abonnement ?</summary><div class="mt-2 text-textSoft">IA illimitée, suivi avancé, contenus & outils exclusifs.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Offre annuelle ?</summary><div class="mt-2 text-textSoft">35,99 € / an (−20% → 3,59 €/mois).</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">À qui s’adresse l’app ?</summary><div class="mt-2 text-textSoft">À tous les pères; multiculturelle & personnalisée.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Utile pour les mamans ?</summary><div class="mt-2 text-textSoft">Oui — aide à rééquilibrer la charge mentale.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Déjà papa ?</summary><div class="mt-2 text-textSoft">Oui — l’app s’adapte à votre situation actuelle.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Différences vs autres apps ?</summary><div class="mt-2 text-textSoft">1er assistant personnel de paternité, IA spécialisée qui s’adapte en temps réel.</div></details>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="space-y-3">
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Pourquoi To Be Father ?</summary><div class="mt-2 text-textSoft">Peu d’outils existent pour 175M de nouveaux pères/an.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Objectif principal ?</summary><div class="mt-2 text-textSoft">Soutien concret & place pleine du père.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Égalité parentale ?</summary><div class="mt-2 text-textSoft">Parentalité équilibrée & partagée.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Ambition long terme ?</summary><div class="mt-2 text-textSoft">Convaincre France/Europe/Monde.</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Seulement une app ?</summary><div class="mt-2 text-textSoft">Non, aussi un média engagé.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Où suivre le projet ?</summary><div class="mt-2 text-textSoft">@tobefather.off (IG/LinkedIn/Facebook/TikTok).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Témoignages ?</summary><div class="mt-2 text-textSoft">Oui, au centre du projet.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Podcast/YouTube ?</summary><div class="mt-2 text-textSoft">Prévu (YouTube/Spotify/Deezer).</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Quels professionnels ?</summary><div class="mt-2 text-textSoft">Médecins & spécialistes en activité (voir story PRO TBF).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Liens mutuelles/institutions ?</summary><div class="mt-2 text-textSoft">Pas encore ; en travail.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Entreprises ?</summary><div class="mt-2 text-textSoft">Oui — avantage RH possible.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Professionnel·le de santé ?</summary><div class="mt-2 text-textSoft">Oui : contact@tobefather.com.</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Données protégées ?</summary><div class="mt-2 text-textSoft">Oui, priorité absolue ; jamais revendues sans accord.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">RGPD ?</summary><div class="mt-2 text-textSoft">Oui, respect strict.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Partage d’infos perso ?</summary><div class="mt-2 text-textSoft">Non, sauf choix explicite (ex. autre parent).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Anonymat ?</summary><div class="mt-2 text-textSoft">Non (app personnalisée), mais données sécurisées.</div></details>
+
+            <details class="card p-4"><summary class="cursor-pointer font-medium">International ?</summary><div class="mt-2 text-textSoft">Oui, progressivement avec experts locaux.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Traductions ?</summary><div class="mt-2 text-textSoft">Anglais, espagnol, allemand (priorité).</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Version web ?</summary><div class="mt-2 text-textSoft">Pas au début ; installation requise.</div></details>
+            <details class="card p-4"><summary class="cursor-pointer font-medium">Couples séparés ?</summary><div class="mt-2 text-textSoft">Oui, prévu.</div></details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container-12 grid md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <h2 class="font-[Poppins] text-2xl font-bold">Contact</h2>
+          <p class="text-textSoft">Email : <a class="underline" href="mailto:contact@tobefather.com">contact@tobefather.com</a></p>
+          <p class="text-textSoft mt-2">Entreprises / institutions / professionnels de santé : parlons partenariat.</p>
+        </div>
+        <div class="card p-6">
+          <form action="mailto:contact@tobefather.com" method="post">
+            <input required placeholder="Nom" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2" />
+            <input required type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2" />
+            <input required placeholder="Sujet" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2" />
+            <textarea required placeholder="Message" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 my-2"></textarea>
+            <label class="flex gap-2 text-sm text-textSoft my-2"><input type="checkbox" required/> J’accepte la politique de confidentialité.</label>
+            <button class="btn btn-primary">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section border-t border-slate-200">
+      <div class="container-12 grid md:grid-cols-4 gap-6 text-sm">
+        <div>
+          <h3 class="font-[Poppins] font-semibold text-lg">To Be Father</h3>
+          <p class="text-textSoft mt-2">© To Be Father</p>
+        </div>
+        <div class="space-y-1">
+          <a href="#application">Application</a><br/>
+          <a href="#media">Média</a><br/>
+          <a href="#prix">Prix</a>
+        </div>
+        <div class="space-y-1">
+          <a href="#faq">FAQ</a><br/>
+          <a href="#partenariats">Partenariats</a><br/>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="space-y-1">
+          <a href="#conf">RGPD & Politique de confidentialité</a><br/>
+          <a href="#cgu">CGU</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Simple cookies banner (light) -->
+  <div id="cookies" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-lg z-50 card p-4 hidden">
+    <p class="text-sm text-textSoft">Nous utilisons des cookies d’analytics anonymisés pour améliorer l’expérience.</p>
+    <div class="mt-3 flex gap-3">
+      <button class="btn btn-primary" onclick="localStorage.setItem('tbf_cookies_ok','1');document.getElementById('cookies').style.display='none'">Accepter</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('cookies').style.display='none'">Refuser</button>
+    </div>
+  </div>
+
+  <script>
+    // cookies
+    if(!localStorage.getItem('tbf_cookies_ok')){
+      document.getElementById('cookies').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
