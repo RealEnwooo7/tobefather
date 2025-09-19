@@ -52,7 +52,7 @@
     .btn:focus-visible{outline:3px solid rgba(99,102,241,.8); outline-offset:2px}
     .btn.block{width:100%; justify-content:center}
 
-    /* NEON CTA */
+    /* NEON CTA (boutons uniquement) */
     .neon{position:relative; text-shadow:0 0 14px rgba(108,99,255,.55); filter:drop-shadow(0 10px 24px rgba(108,99,255,.25)); animation:glow 3.2s ease-in-out infinite alternate}
     @keyframes glow{from{box-shadow:0 0 28px rgba(108,99,255,.25)} to{box-shadow:0 0 42px rgba(108,99,255,.45)}}
     @media (prefers-reduced-motion:reduce){ .neon{animation:none} }
@@ -76,7 +76,7 @@
     .nav-cta{margin-left:.4rem}
     /* Burger */
     .burger{display:none; background:transparent; border:0; color:var(--text-light); font-size:1.6rem; position:relative; z-index:1300}
-    /* --- Mobile menu (overlay) — NOUVEAU --- */
+    /* --- Mobile menu (overlay) --- */
     .mobile-overlay{
       position:fixed; inset:0; z-index:1200;
       display:none; flex-direction:column; align-items:center; text-align:center;
@@ -113,7 +113,7 @@
     }
     @keyframes float{from{transform:translateY(-2%) scale(1)} to{transform:translateY(2%) scale(1.03)}}
     .hero-inner{display:grid; place-items:center; text-align:center; gap:22px}
-    .hero-title{font-size:clamp(2.2rem,4.6vw,3.8rem); line-height:1.08}
+    .hero-title{font-size:clamp(2.2rem,4.6vw,3.8rem); line-height:1.08; color:#EAF0FF; font-weight:700; letter-spacing:-0.01em}
     .hero-sub{font-size:clamp(1rem,1.4vw,1.15rem); opacity:.95; max-width:70ch; margin:0 auto}
     .hero-cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
     .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:8px}
@@ -121,6 +121,7 @@
     /* Sections */
     section{padding:84px 0}
     .section-header{text-align:center; margin-bottom:26px}
+    .section-header h2{color:#EAF0FF; font-weight:700; letter-spacing:-0.01em}
     .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
     .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
     .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
@@ -154,7 +155,6 @@
 
     /* Footer */
     footer{padding:38px 0 60px; border-top:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(10,20,35,.5), rgba(10,20,35,.75))}
-
     .footer-brand{display:flex; align-items:center; gap:.6rem}
 
     /* Reveal */
@@ -173,23 +173,47 @@
       .neon{animation:none}
     }
 
-    /* --- Titres "bleu fluo" comme le CTA --- */
-    h1, h2, h3{
-      background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 14px rgba(108,99,255,.55), 0 0 28px rgba(108,99,255,.35);
-      filter: drop-shadow(0 10px 24px rgba(108,99,255,.25));
-      animation: glow 3.2s ease-in-out infinite alternate;
+    /* --- TITRES : bleu fluo propre (sans rectangle) --- */
+
+    /* Gros titres sobres (pas d'effet néon) */
+    h1, h2{
+      background:none;
+      -webkit-background-clip:initial;
+      background-clip:initial;
+      color:var(--text-light);
+      text-shadow:none;
+      filter:none;
+      animation:none;
+      font-weight:700;
     }
+
+    /* Accent léger à l'intérieur des gros titres (sur un mot) */
+    .accent{
+      background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 8px rgba(108,99,255,.25);
+    }
+
+    /* Petits titres : effet bleu fluo uniquement sur le texte */
+    h3, .card strong, #partners .feature h3{
+      background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 12px rgba(108,99,255,.45);
+      filter:none;     /* pas de drop-shadow sur le bloc */
+      animation:none;  /* pas d'animation qui crée un halo rectangulaire */
+    }
+
     /* Accessibilité : mode couleurs forcées */
     @media (forced-colors: active){
-      h1, h2, h3{
-        background: none !important;
-        color: ButtonText !important;
-        text-shadow: none !important;
-        animation: none !important;
+      h1, h2, h3, .card strong, #partners .feature h3, .accent{
+        background:none !important;
+        color:ButtonText !important;
+        text-shadow:none !important;
+        animation:none !important;
       }
     }
   </style>
@@ -282,7 +306,7 @@
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-inner">
         <h1 class="hero-title">
-          La première application <span>copilote</span> de la paternité.
+          La première application <span class="accent">copilote</span> de la paternité.
         </h1>
         <p class="hero-sub">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
         <div class="hero-cta">
@@ -403,37 +427,34 @@
 
     <!-- Partenariats -->
     <section id="partners" aria-labelledby="partners-title">
-  <div class="container">
-    <div class="card" style="padding:24px; text-align:center" data-reveal>
-      <h2 id="partners-title">Partenaires & experts</h2>
+      <div class="container">
+        <div class="card" style="padding:24px; text-align:center" data-reveal>
+          <h2 id="partners-title">Partenaires & experts</h2>
 
-      <p style="margin:0 auto 14px; max-width:720px">
-        Nous travaillons avec un réseau de médecins et spécialistes
-        (obstétriciens, sages-femmes, psychologues, sexologues, juristes…)
-        qui contribuent à nos contenus et ateliers.
-      </p>
+          <p style="margin:0 auto 14px; max-width:720px">
+            Nous travaillons avec un réseau de médecins et spécialistes
+            (obstétriciens, sages-femmes, psychologues, sexologues, juristes…)
+            qui contribuent à nos contenus et ateliers.
+          </p>
 
-      <div class="features" style="display:flex; flex-wrap:wrap; gap:18px; justify-content:center; text-align:left">
-        <!-- Bloc Entreprises -->
-        <div class="feature" style="flex:1 1 320px; max-width:460px">
-          <h3 style="margin-bottom:8px; text-align:center">Vous êtes une entreprise ?</h3>
-          <ul style="margin:0 0 14px 18px; line-height:1.6">
-            <li>Accompagnement des futurs pères</li>
-            <li>Ateliers clés en main & ressources RH</li>
-            <li>Infos congé paternité & budget famille</li>
-          </ul>
-          <p style="text-align:center">
-            <a href="#contact" class="btn primary neon">Proposer TBF à vos salariés</a>
-          </p>
-          <p style="font-size:.95rem; opacity:.85; text-align:center">
-            
-          </p>
+          <div class="features" style="display:flex; flex-wrap:wrap; gap:18px; justify-content:center; text-align:left">
+            <!-- Bloc Entreprises -->
+            <div class="feature" style="flex:1 1 320px; max-width:460px">
+              <h3 style="margin-bottom:8px; text-align:center">Vous êtes une entreprise ?</h3>
+              <ul style="margin:0 0 14px 18px; line-height:1.6">
+                <li>Accompagnement des futurs pères</li>
+                <li>Ateliers clés en main & ressources RH</li>
+                <li>Infos congé paternité & budget famille</li>
+              </ul>
+              <p style="text-align:center">
+                <a href="#contact" class="btn primary neon">Proposer TBF à vos salariés</a>
+              </p>
+              <p style="font-size:.95rem; opacity:.85; text-align:center"></p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Médias & réseaux -->
     <section id="social">
