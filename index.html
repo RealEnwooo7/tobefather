@@ -174,47 +174,87 @@
     }
 
     /* --- TITRES : bleu fluo propre (sans rectangle) --- */
-
-    /* Gros titres sobres (pas d'effet néon) */
     h1, h2{
-      background:none;
-      -webkit-background-clip:initial;
-      background-clip:initial;
-      color:var(--text-light);
-      text-shadow:none;
-      filter:none;
-      animation:none;
-      font-weight:700;
+      background:none; -webkit-background-clip:initial; background-clip:initial;
+      color:var(--text-light); text-shadow:none; filter:none; animation:none; font-weight:700;
     }
-
-    /* Accent léger à l'intérieur des gros titres (sur un mot) */
     .accent{
       background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
       text-shadow:0 0 8px rgba(108,99,255,.25);
     }
-
-    /* Petits titres : effet bleu fluo uniquement sur le texte */
     h3, .card strong, #partners .feature h3{
       background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:0 0 12px rgba(108,99,255,.45);
-      filter:none;     /* pas de drop-shadow sur le bloc */
-      animation:none;  /* pas d'animation qui crée un halo rectangulaire */
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 0 12px rgba(108,99,255,.45); filter:none; animation:none;
     }
-
-    /* Accessibilité : mode couleurs forcées */
     @media (forced-colors: active){
       h1, h2, h3, .card strong, #partners .feature h3, .accent{
-        background:none !important;
-        color:ButtonText !important;
-        text-shadow:none !important;
-        animation:none !important;
+        background:none !important; color:ButtonText !important;
+        text-shadow:none !important; animation:none !important;
       }
+    }
+
+    /* --- Floating Countdown (top-right) --- */
+    #countdown{
+      position:fixed; top:12px; right:12px; z-index:1150;
+      display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+    }
+    #countdown .cd-card{
+      width:min(92vw, 360px);
+      background:var(--glass); border:1px solid var(--glass-border);
+      border-radius:16px; box-shadow:var(--shadow); padding:12px 12px 10px;
+      backdrop-filter:saturate(150%) blur(12px);
+    }
+    #countdown .cd-head{
+      text-align:center; font-weight:700; font-size:.95rem; line-height:1.2; margin-bottom:8px;
+      background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 0 10px rgba(108,99,255,.35);
+    }
+    #countdown .cd-grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:8px; align-items:stretch;
+    }
+    #countdown .cd-box{
+      text-align:center; padding:8px 6px; border-radius:12px;
+      border:1px solid var(--glass-border); background:rgba(255,255,255,.05);
+    }
+    #countdown .cd-number{
+      font-weight:800; font-size:1.15rem; line-height:1;
+      background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 0 10px rgba(108,99,255,.35);
+    }
+    #countdown .cd-label{font-size:.72rem; opacity:.9; margin-top:4px}
+
+    #countdown .cd-actions{
+      display:flex; justify-content:flex-end; margin-top:8px; gap:6px;
+    }
+    #countdown .cd-btn{
+      background:transparent; border:1px solid var(--glass-border); color:#d7def1;
+      padding:.35rem .55rem; border-radius:10px; font-weight:600; font-size:.8rem;
+      cursor:pointer;
+    }
+    #countdown .cd-btn:hover{background:rgba(255,255,255,.06)}
+    /* Minimized state */
+    #countdown .cd-toggle{display:none}
+    #countdown.minimized .cd-card{display:none}
+    #countdown.minimized .cd-toggle{
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.5rem .7rem; border-radius:999px; border:1px solid var(--glass-border);
+      background:rgba(255,255,255,.06); font-weight:700; font-size:.85rem;
+      backdrop-filter:saturate(150%) blur(12px);
+    }
+    #countdown .cd-toggle .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      filter:drop-shadow(0 0 6px rgba(108,99,255,.6));
+    }
+    /* Mobile tweaks */
+    @media (max-width:520px){
+      #countdown{top:10px; right:10px}
+      #countdown .cd-grid{gap:6px}
+      #countdown .cd-number{font-size:1.05rem}
     }
   </style>
 
@@ -248,15 +288,23 @@
 <body>
   <a class="skip pill" href="#main">Aller au contenu</a>
 
-  <!-- Cookie banner -->
-  <div id="cookie" class="container" style="position:sticky; top:0; z-index:1300; display:none;">
-    <div class="card" style="margin:12px auto; padding:12px 16px; display:flex; gap:12px; align-items:center; justify-content:space-between">
-      <div style="font-size:.95rem">Nous utilisons des cookies d’analytics anonymisés. <a href="./confidentialite.html" style="text-decoration:underline">En savoir plus</a>.</div>
-      <div style="display:flex; gap:8px">
-        <button class="btn ghost" id="cookie-decline" aria-label="Refuser les cookies">Refuser</button>
-        <button class="btn primary" id="cookie-accept" aria-label="Accepter les cookies">Accepter</button>
+  <!-- Floating Countdown -->
+  <div id="countdown" aria-live="polite">
+    <div class="cd-card" role="dialog" aria-label="Compte à rebours du lancement">
+      <div class="cd-head">Temps avant le lancement</div>
+      <div class="cd-grid" aria-hidden="false">
+        <div class="cd-box" aria-label="Jours restants"><div id="cd-days" class="cd-number">—</div><div class="cd-label">Jours</div></div>
+        <div class="cd-box" aria-label="Heures restantes"><div id="cd-hours" class="cd-number">—</div><div class="cd-label">Heures</div></div>
+        <div class="cd-box" aria-label="Minutes restantes"><div id="cd-mins" class="cd-number">—</div><div class="cd-label">Minutes</div></div>
+        <div class="cd-box" aria-label="Secondes restantes"><div id="cd-secs" class="cd-number">—</div><div class="cd-label">Secondes</div></div>
+      </div>
+      <div class="cd-actions">
+        <button id="cd-close" class="cd-btn" aria-label="Réduire le compte à rebours">Masquer</button>
       </div>
     </div>
+    <button id="cd-toggle" class="cd-toggle" aria-expanded="false" aria-controls="countdown">
+      <span class="dot" aria-hidden="true"></span> Lancement
+    </button>
   </div>
 
   <header>
@@ -639,6 +687,58 @@
     if(!localStorage.getItem('tbf_cookie')) c.style.display='block';
     document.getElementById('cookie-accept')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','yes'); c.remove();});
     document.getElementById('cookie-decline')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','no'); c.remove();});
+
+    /* --- Floating Countdown logic --- */
+    // Change target here if besoin (année, mois[0-11], jour, h, m, s)
+    const LAUNCH_DATE = new Date(2026, 6, 1, 0, 0, 0); // 1 juillet 2026, 00:00 (heure locale)
+    const cdRoot = document.getElementById('countdown');
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMins = document.getElementById('cd-mins');
+    const cdSecs = document.getElementById('cd-secs');
+    const cdClose = document.getElementById('cd-close');
+    const cdToggle = document.getElementById('cd-toggle');
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+
+    function renderCountdown(){
+      const now = new Date();
+      let diff = LAUNCH_DATE - now;
+      if(diff <= 0){
+        cdDays.textContent = '0';
+        cdHours.textContent = '00';
+        cdMins.textContent = '00';
+        cdSecs.textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / (1000*60*60*24));
+      diff -= d * (1000*60*60*24);
+      const h = Math.floor(diff / (1000*60*60));
+      diff -= h * (1000*60*60);
+      const m = Math.floor(diff / (1000*60));
+      diff -= m * (1000*60);
+      const s = Math.floor(diff / 1000);
+      cdDays.textContent = d;
+      cdHours.textContent = pad2(h);
+      cdMins.textContent = pad2(m);
+      cdSecs.textContent = pad2(s);
+    }
+
+    // Update every second
+    renderCountdown();
+    setInterval(renderCountdown, 1000);
+
+    // Minimize / Restore with localStorage
+    const CD_STATE_KEY = 'tbf_cd_state'; // 'min' | 'max'
+    function applyCdState(state){
+      if(state === 'min'){ cdRoot.classList.add('minimized'); cdToggle.setAttribute('aria-expanded','false'); }
+      else { cdRoot.classList.remove('minimized'); cdToggle.setAttribute('aria-expanded','true'); }
+      localStorage.setItem(CD_STATE_KEY, state);
+    }
+    cdClose?.addEventListener('click', () => applyCdState('min'));
+    cdToggle?.addEventListener('click', () => applyCdState(cdRoot.classList.contains('minimized') ? 'max' : 'min'));
+    // Init state
+    applyCdState(localStorage.getItem(CD_STATE_KEY) || 'max');
   </script>
 </body>
 </html>
