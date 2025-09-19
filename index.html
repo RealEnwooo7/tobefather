@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>To Be Father – L’app copilote de la paternité</title>
+  <meta name="description" content="To Be Father accompagne les pères dès la grossesse jusqu’aux premières années. IA spécialisée, checklists, conseils experts. Lancement juillet 2026.">
+  <meta name="theme-color" content="#0B1B2B" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="To Be Father – L’app copilote de la paternité">
+  <meta property="og:description" content="IA spécialisée, checklists, conseils experts. Lancement juillet 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dummyimage.com/1200x630/0e2740/e6eaf0&text=To+Be+Father">
+  <meta property="og:url" content="https://tbf.example/">
+
+  <!-- Robots (à ajuster si besoin) -->
+  <meta name="robots" content="index,follow">
+
+  <style>
+    /* ---------- Design System ---------- */
+    :root{
+      --navy:#0B1B2B;
+      --night:#0E2740;
+      --primary:#2357AA;
+      --indigo:#3C4BD9;
+      --grad-from:#2F80ED;
+      --grad-via:#5A7BEF;
+      --grad-to:#6C63FF;
+      --text-light:#E6EAF0;
+      --text-dark:#0E1622;
+      --success:#2DD4BF; --warn:#F59E0B; --danger:#EF4444;
+
+      --radius:20px; /* ~ rounded-2xl */
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --glass:rgba(255,255,255,.08);
+      --glass-border:rgba(255,255,255,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(160deg,var(--night),#101a2b 40%, #0d1a33); color:var(--text-light);}
+    body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height:1.6}
+    h1,h2,h3{font-family:Poppins, Inter, sans-serif; margin:0 0 .5rem}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Container */
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+    /* Glass card */
+    .card{background:var(--glass); backdrop-filter:saturate(150%) blur(14px); border:1px solid var(--glass-border); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .pill{border-radius:999px; padding:.5rem .9rem; border:1px solid var(--glass-border); background:rgba(255,255,255,.06)}
+
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:calc(var(--radius) - 8px); font-weight:600; letter-spacing:.2px; transition:transform .15s cubic-bezier(.2,.8,.2,1), box-shadow .15s;}
+    .btn.primary{color:white; background:linear-gradient(90deg,var(--grad-from),var(--grad-via),var(--grad-to)); border:0;}
+    .btn.ghost{color:#cfd8ea; background:transparent; border:1px solid var(--glass-border)}
+    .btn:hover{transform:translateY(-1px) scale(1.02); box-shadow:0 12px 24px rgba(20,30,60,.35)}
+    .btn:focus-visible{outline:3px solid rgba(99,102,241,.8); outline-offset:2px; border-radius:14px}
+
+    /* Header / Nav */
+    .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip:focus{left:16px; top:16px; width:auto; height:auto; z-index:9999}
+
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,20,35,.9), rgba(10,20,35,.6)); border-bottom:1px solid rgba(255,255,255,.1)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .logo{display:flex; align-items:center; gap:.75rem}
+    .logo-badge{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--grad-from),var(--grad-to)); display:grid; place-items:center; font-weight:800; color:white; letter-spacing:.5px}
+    .nav-links{display:flex; gap:1rem; align-items:center}
+    .nav-links a{padding:.6rem .8rem; border-radius:10px}
+    .nav-links a:hover{background:rgba(255,255,255,.06)}
+    .burger{display:none; background:transparent; border:0; color:var(--text-light); font-size:1.4rem}
+
+    @media (max-width:900px){
+      .burger{display:block}
+      .nav-links{position:fixed; inset:0; background:linear-gradient(180deg, rgba(10,20,35,.98), rgba(12,20,40,.92)); backdrop-filter:blur(16px); flex-direction:column; padding:100px 24px 24px; gap:14px; transform:translateY(-100%); transition:transform .25s ease; }
+      .nav-links.open{transform:translateY(0)}
+      .nav-links a{width:100%; text-align:center; font-size:1.1rem}
+      .nav-cta{margin-top:12px}
+    }
+
+    /* Hero */
+    .hero{position:relative; padding:120px 0 80px; overflow:hidden}
+    .hero-bg{
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(60% 60% at 20% 10%, rgba(99,102,241,.28), transparent 60%),
+        radial-gradient(60% 60% at 80% 30%, rgba(47,128,237,.25), transparent 60%),
+        radial-gradient(60% 60% at 40% 90%, rgba(90,123,239,.22), transparent 60%);
+      filter:blur(40px); opacity:.22; animation:float 20s linear infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes float{from{transform:translateY(-2%) scale(1)} to{transform:translateY(2%) scale(1.03)}}
+
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center}
+    @media (max-width:960px){ .hero-grid{grid-template-columns:1fr} }
+
+    .kpi{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+
+    /* Sections */
+    section{padding:84px 0}
+    .section-header{margin-bottom:28px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    @media (max-width:1000px){ .grid-3{grid-template-columns:1fr 1fr} .grid-4{grid-template-columns:1fr 1fr} }
+    @media (max-width:640px){ .grid-3,.grid-4{grid-template-columns:1fr} }
+
+    .list{margin:0; padding-left:1.1em}
+    .list li{margin:.35rem 0}
+
+    /* Pricing */
+    .pricing{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    @media (max-width:900px){ .pricing{grid-template-columns:1fr} }
+    .price{font-size:2rem; font-weight:700}
+    .table-list{margin:0; padding:0; list-style:none}
+    .table-list li{display:flex; align-items:flex-start; gap:.6rem; margin:.5rem 0}
+
+    /* Testimonials slider */
+    .slider{position:relative; overflow:hidden}
+    .slides{display:flex; gap:18px; transition:transform .6s ease}
+    .dotbar{display:flex; gap:8px; justify-content:center; margin-top:14px}
+    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35)}
+    .dot.active{background:#fff}
+
+    /* FAQ teaser cards */
+    .faq-teaser a{display:inline-flex; align-items:center; gap:.5rem}
+
+    /* Forms */
+    .form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .form .full{grid-column:1 / -1}
+    .input{width:100%; padding:12px 14px; border-radius:14px; border:1px solid var(--glass-border); background:rgba(255,255,255,.06); color:#eaf0ff}
+    .input:focus{outline:3px solid rgba(99,102,241,.7)}
+    label{font-size:.9rem; opacity:.9}
+    .consent{display:flex; gap:.6rem; align-items:flex-start; font-size:.9rem}
+
+    /* Footer */
+    footer{padding:36px 0 60px; border-top:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(10,20,35,.5), rgba(10,20,35,.75))}
+
+    /* Animations on reveal */
+    [data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .4s ease, transform .4s ease}
+    [data-reveal].visible{opacity:1; transform:none}
+
+    /* Back to top */
+    .to-top{position:fixed; right:18px; bottom:18px; z-index:40}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      .hero-bg{animation:none}
+      .btn{transition:none}
+      .slides{transition:none}
+      [data-reveal]{transition:none}
+    }
+  </style>
+
+  <!-- JSON-LD Organization + Product/Offer -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"To Be Father",
+    "url":"https://tbf.example/",
+    "logo":"https://dummyimage.com/200x200/2F80ED/ffffff&text=TBF",
+    "sameAs":["https://instagram.com/tobefather.off","https://www.linkedin.com/company/tobefather","https://tiktok.com/@tobefather.off","https://facebook.com/tobefather.off"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"To Be Father (application)",
+    "releaseDate":"2026-07-01",
+    "applicationCategory":"MobileApplication",
+    "operatingSystem":"iOS, Android",
+    "offers":[
+      {"@type":"Offer","price":"0","priceCurrency":"EUR","category":"Free"},
+      {"@type":"Offer","price":"4.39","priceCurrency":"EUR","priceValidUntil":"2027-12-31","description":"Mensuel Premium"},
+      {"@type":"Offer","price":"35.99","priceCurrency":"EUR","description":"Annuel Premium (-20%)"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip pill" href="#main">Aller au contenu</a>
+
+  <!-- Cookie banner -->
+  <div id="cookie" class="container" style="position:sticky; top:0; z-index:60; display:none;">
+    <div class="card" style="margin:12px auto; padding:12px 16px; display:flex; gap:12px; align-items:center; justify-content:space-between">
+      <div style="font-size:.95rem">Nous utilisons des cookies d’analytics anonymisés. <a href="./confidentialite.html" style="text-decoration:underline">En savoir plus</a>.</div>
+      <div style="display:flex; gap:8px">
+        <button class="btn ghost" id="cookie-decline" aria-label="Refuser les cookies">Refuser</button>
+        <button class="btn primary" id="cookie-accept" aria-label="Accepter les cookies">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="container nav" aria-label="Navigation principale">
+      <a href="#" class="logo" aria-label="To Be Father, accueil">
+        <span class="logo-badge">TBF</span>
+        <strong>To Be Father</strong>
+      </a>
+      <button class="burger" aria-expanded="false" aria-controls="menu" id="burger" aria-label="Ouvrir le menu">☰</button>
+      <div id="menu" class="nav-links" role="menu">
+        <a href="#app" role="menuitem">Application</a>
+        <a href="#media" role="menuitem">Média</a>
+        <a href="#why" role="menuitem">Pourquoi</a>
+        <a href="#features" role="menuitem">Fonctionnalités</a>
+        <a href="#pricing" role="menuitem">Prix</a>
+        <a href="#partners" role="menuitem">Partenariats</a>
+        <a href="#contact" role="menuitem">Contact</a>
+        <a href="faq.html" class="pill" role="menuitem" aria-label="Aller à la FAQ">FAQ</a>
+        <a href="#waitlist" class="btn primary nav-cta" role="menuitem">Liste d’attente</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div data-reveal>
+          <div class="pill" aria-hidden="true">Lancement&nbsp;: juillet 2026 · iOS & Android</div>
+          <h1 style="font-size:clamp(2.2rem,4.5vw,3.4rem); margin-top:14px">La première application copilote de la paternité.</h1>
+          <p style="font-size:1.05rem; opacity:.92">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px">
+            <a href="#waitlist" class="btn primary">Rejoindre la liste d’attente</a>
+            <a href="#media" class="btn ghost">Découvrir le média</a>
+          </div>
+          <div class="badges" aria-label="Badges plateformes">
+            <span class="pill"> iOS</span>
+            <span class="pill">Android</span>
+            <span class="pill">Lancement: juillet 2026</span>
+          </div>
+          <div class="kpi">
+            <span class="pill">IA spécialisée</span>
+            <span class="pill">Checklists & rappels</span>
+            <span class="pill">Conseils médicaux / juridiques</span>
+            <span class="pill">Soutien émotionnel</span>
+          </div>
+        </div>
+        <div data-reveal style="display:grid;place-items:center">
+          <div class="card" style="width:min(520px,100%); padding:14px">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop" alt="Illustration d’un père avec son enfant" style="border-radius:14px">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application -->
+    <section id="app">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>📱 L’Application To Be Father</h2>
+          <p>To Be Father est la première application copilote de la paternité. Grâce à une IA spécialisée, elle accompagne les futurs et jeunes pères dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Conseils médicaux, juridiques et pratiques</strong>
+            <ul class="list">
+              <li>Basés sur des sources fiables et validées</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Checklists & rappels personnalisés</strong>
+            <ul class="list">
+              <li>Suivi semaine par semaine</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Soutien émotionnel & communauté (à terme)</strong>
+            <ul class="list">
+              <li>Espace d’échange prévu</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:14px" role="note">Sortie prévue: juillet 2026 · iOS & Android</div>
+      </div>
+    </section>
+
+    <!-- Media -->
+    <section id="media">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>📰 Le Média To Be Father</h2>
+          <p>Plus qu’une app, To Be Father est aussi un média engagé. Nous brisons les tabous, partageons des témoignages et donnons la parole aux experts.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal><strong>Interviews de spécialistes</strong></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Réels éducatifs et inspirants</strong></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Contenus dédiés aux papas</strong></div>
+        </div>
+        <div style="margin-top:14px"><a class="btn ghost" href="https://instagram.com/tobefather.off" target="_blank" rel="noopener">Suivre @tobefather.off</a></div>
+      </div>
+    </section>
+
+    <!-- Pourquoi / Vision -->
+    <section id="why">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Pourquoi To Be Father ?</h2>
+        </div>
+        <div class="grid-4">
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Constat</strong>
+            <p>175 millions d’hommes deviennent pères chaque année, mais trop peu d’outils leur sont dédiés.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Objectif</strong>
+            <p>Permettre aux pères de se sentir utiles, importants et soutenus.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Égalité parentale</strong>
+            <p>Parentalité équilibrée et partagée: une nécessité pour le bien-être de tous.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Ambition</strong>
+            <p>Convaincre en France, Europe et monde que la paternité mérite un soutien concret.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section id="audience">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Pour qui ?</h2>
+          <p>À tous les pères: seuls, en couple, mariés, homosexuels… Application multiculturelle et personnalisée. Utile aussi pour les mamans (rééquilibrage de la charge mentale).</p>
+          <span class="pill">Déjà papa ? Oui, l’app s’adapte à votre situation.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section id="features">
+      <div class="container">
+        <div class="section-header" data-reveal><h2>Fonctionnalités clés</h2></div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal><strong>IA personnalisée</strong> <p>Accès illimité en Premium</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Suivi & checklists</strong> <p>Grossesse → premières années</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Conseils en temps réel</strong> <p>Par des pros (médecins, SF, psy…)</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Espace communautaire</strong> <p>Prévu</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Rappels & to-dos</strong> <p>Partage avec l’autre parent (à terme)</p></div>
+          <div class="card faq-teaser" style="padding:18px" data-reveal>
+            <strong>Questions fréquentes</strong>
+            <p><a class="btn ghost" href="faq.html" aria-label="Voir la FAQ">Voir la FAQ →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prix -->
+    <section id="pricing">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Prix & abonnements</h2>
+        </div>
+        <div class="pricing">
+          <div class="card" style="padding:18px" data-reveal>
+            <h3>Gratuit</h3>
+            <div class="price">0 €</div>
+            <ul class="table-list">
+              <li>✔︎ Essentiels + IA (jusqu’à 5 questions/jour)</li>
+            </ul>
+            <a href="#waitlist" class="btn ghost" aria-label="Être informé du lancement - gratuit">Être informé du lancement</a>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <h3>Premium</h3>
+            <div class="price">4,39 €/mois</div>
+            <p>Annuel: 35,99 €/an (3,59 €/mois, remise 20%)</p>
+            <ul class="table-list">
+              <li>✔︎ IA personnalisée illimitée</li>
+              <li>✔︎ Suivi avancé</li>
+              <li>✔︎ Contenus & outils exclusifs</li>
+            </ul>
+            <a href="#waitlist" class="btn primary" aria-label="Être informé du lancement - premium">Être informé du lancement</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenariats -->
+    <section id="partners">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Partenariats & experts</h2>
+          <p>Nous collaborons avec des médecins et spécialistes (obstétriciens, sages-femmes, psychologues, sexologues, juristes…). Découvrez-les dans la story à la une “PRO TBF” sur Instagram.</p>
+          <p>Entreprises & institutions: contactez-nous pour proposer To Be Father à vos équipes. Partenariats mutuelles/institutions à venir (congé paternité, coûts famille…).</p>
+          <a href="#contact" class="btn ghost">Proposer TBF à vos salariés</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Médias & réseaux -->
+    <section id="social">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Médias & réseaux</h2>
+          <p>Depuis septembre 2025, To Be Father est aussi un média présent sur Instagram, LinkedIn, Facebook et TikTok: @tobefather.off.</p>
+        </div>
+        <div class="slider card" style="padding:18px" aria-roledescription="carousel" aria-label="Témoignages de pères">
+          <div class="slides" id="slides">
+            <blockquote class="card" style="min-width:280px; padding:18px">“Enfin un outil qui parle aux pères sans clichés.” — Julien</blockquote>
+            <blockquote class="card" style="min-width:280px; padding:18px">“Les checklists m’ont sauvé la tête pendant la grossesse.” — Samir</blockquote>
+            <blockquote class="card" style="min-width:280px; padding:18px">“Hâte de la communauté pour échanger.” — Maxime</blockquote>
+          </div>
+          <div class="dotbar" role="tablist" aria-label="Pagination">
+            <button class="dot" aria-label="Slide 1" data-dot="0"></button>
+            <button class="dot" aria-label="Slide 2" data-dot="1"></button>
+            <button class="dot" aria-label="Slide 3" data-dot="2"></button>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://instagram.com/tobefather.off">Instagram</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/">LinkedIn</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.facebook.com/">Facebook</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/">TikTok</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Waitlist -->
+    <section id="waitlist">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Rejoindre la liste d’attente</h2>
+          <form class="form" action="https://formspree.io/f/your-id" method="POST">
+            <div>
+              <label for="wl-name">Nom</label>
+              <input class="input" id="wl-name" name="name" required placeholder="Votre nom">
+            </div>
+            <div>
+              <label for="wl-email">Email</label>
+              <input class="input" id="wl-email" name="email" type="email" required placeholder="vous@exemple.com">
+            </div>
+            <div class="full">
+              <label for="wl-notes">Message (optionnel)</label>
+              <textarea class="input" id="wl-notes" name="message" rows="3" placeholder="Je veux être informé du lancement…"></textarea>
+            </div>
+            <div class="full consent">
+              <input id="wl-consent" type="checkbox" required>
+              <label for="wl-consent">J’accepte que mes données soient utilisées pour me recontacter à propos de To Be Father. <a href="./confidentialite.html">Politique de confidentialité</a>.</label>
+            </div>
+            <div class="full">
+              <button class="btn primary" type="submit">Je m’inscris</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header" data-reveal><h2>Contact</h2></div>
+        <div class="grid-2">
+          <div class="card" style="padding:18px" data-reveal>
+            <p>Email: <a href="mailto:contact@tobefather.com">contact@tobefather.com</a></p>
+            <p>Entreprises / institutions / professionnels de santé: parlons partenariat.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <form class="form" action="mailto:contact@tobefather.com" method="post" enctype="text/plain">
+              <div>
+                <label for="name">Nom</label>
+                <input class="input" id="name" name="name" required>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input class="input" id="email" name="email" type="email" required>
+              </div>
+              <div class="full">
+                <label for="subject">Sujet</label>
+                <input class="input" id="subject" name="subject" required>
+              </div>
+              <div class="full">
+                <label for="message">Message</label>
+                <textarea class="input" id="message" name="message" rows="4" required></textarea>
+              </div>
+              <div class="full consent">
+                <input id="rgpd" type="checkbox" required>
+                <label for="rgpd">J’accepte le traitement de mes données selon le RGPD.</label>
+              </div>
+              <div class="full"><button class="btn ghost" type="submit">Envoyer</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a href="#top" class="btn primary to-top" aria-label="Retour en haut">↑</a>
+  </main>
+
+  <footer>
+    <div class="container" style="display:grid; gap:18px">
+      <div class="logo"><span class="logo-badge">TBF</span><strong>To Be Father</strong></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <a href="#">Accueil</a> ·
+        <a href="#app">Application</a> ·
+        <a href="#media">Média</a> ·
+        <a href="#pricing">Prix</a> ·
+        <a href="faq.html">FAQ</a> ·
+        <a href="#partners">Partenariats</a> ·
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="opacity:.8">© To Be Father — <a href="./confidentialite.html">RGPD & Confidentialité</a> — <a href="./cgu.html">CGU</a>.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    }, {threshold:.12});
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // Slider
+    const slides = document.getElementById('slides');
+    const dots = Array.from(document.querySelectorAll('[data-dot]'));
+    let idx=0; function go(i){ idx=i; slides.style.transform=`translateX(-${i*(slides.firstElementChild.offsetWidth+18)}px)`; dots.forEach((d,j)=>d.classList.toggle('active',j===i));}
+    dots.forEach(d => d.addEventListener('click', ()=>go(parseInt(d.dataset.dot,10))));
+    setInterval(()=>{go((idx+1)%3)}, 5000);
+
+    // Cookie banner
+    const c = document.getElementById('cookie');
+    if(!localStorage.getItem('tbf_cookie')) c.style.display='block';
+    document.getElementById('cookie-accept')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','yes'); c.remove();});
+    document.getElementById('cookie-decline')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','no'); c.remove();});
+  </script>
+</body>
+</html>
