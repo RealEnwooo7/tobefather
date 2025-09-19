@@ -16,142 +16,128 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://dummyimage.com/1200x630/0e2740/e6eaf0&text=To+Be+Father">
   <meta property="og:url" content="https://tbf.example/">
+  <meta name="robots" content="index,follow">
 
   <style>
     /* ---------- Design System ---------- */
     :root{
-      --navy:#0B1B2B;
-      --night:#0E2740;
-      --primary:#2357AA;
-      --indigo:#3C4BD9;
-      --grad-from:#2F80ED;
-      --grad-via:#5A7BEF;
-      --grad-to:#6C63FF;
-      --text-light:#E6EAF0;
-      --text-dark:#0E1622;
+      --navy:#0B1B2B; --night:#0E2740; --primary:#2357AA; --indigo:#3C4BD9;
+      --grad-from:#2F80ED; --grad-via:#5A7BEF; --grad-to:#6C63FF;
+      --text-light:#E6EAF0; --text-dark:#0E1622;
       --success:#2DD4BF; --warn:#F59E0B; --danger:#EF4444;
-
-      --radius:20px;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
-      --glass:rgba(255,255,255,.08);
-      --glass-border:rgba(255,255,255,.18);
-      --gap:18px;
-      --safe-b: env(safe-area-inset-bottom, 16px);
+      --radius:20px; --shadow:0 10px 30px rgba(0,0,0,.25);
+      --glass:rgba(255,255,255,.08); --glass-border:rgba(255,255,255,.18);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(160deg,var(--night),#101a2b 40%, #0d1a33); color:var(--text-light);}
-    body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height:1.6}
+    html,body{margin:0;padding:0;background:linear-gradient(160deg,var(--night),#0b1729 40%, #0b1931); color:var(--text-light);}
+    body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height:1.65}
     h1,h2,h3{font-family:Poppins, Inter, sans-serif; margin:0 0 .5rem}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;height:auto;display:block}
-    .no-scroll{overflow:hidden; height:100vh}
-
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* Glass */
+    /* Glass card */
     .card{background:var(--glass); backdrop-filter:saturate(150%) blur(14px); border:1px solid var(--glass-border); border-radius:var(--radius); box-shadow:var(--shadow)}
     .pill{border-radius:999px; padding:.5rem .9rem; border:1px solid var(--glass-border); background:rgba(255,255,255,.06)}
 
     /* Buttons */
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:14px; font-weight:600; letter-spacing:.2px; transition:transform .15s cubic-bezier(.2,.8,.2,1), box-shadow .15s;}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:14px; font-weight:600; letter-spacing:.2px; transition:transform .15s cubic-bezier(.2,.8,.2,1), box-shadow .15s, background .2s;}
     .btn.primary{color:white; background:linear-gradient(90deg,var(--grad-from),var(--grad-via),var(--grad-to)); border:0;}
-    .btn.ghost{color:#cfd8ea; background:transparent; border:1px solid var(--glass-border)}
+    .btn.ghost{color:#d7def1; background:transparent; border:1px solid var(--glass-border)}
     .btn:hover{transform:translateY(-1px) scale(1.02); box-shadow:0 12px 24px rgba(20,30,60,.35)}
     .btn:focus-visible{outline:3px solid rgba(99,102,241,.8); outline-offset:2px}
+    .btn.block{width:100%; justify-content:center}
 
     /* Skip link */
-    .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
-    .skip:focus{left:16px; top:16px; width:auto; height:auto; z-index:9999}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:16px; top:16px; z-index:9999; background:#fff; color:#000; padding:.5rem .75rem; border-radius:10px}
 
     /* Header / Nav */
-    header{position:sticky; top:0; z-index:60; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,20,35,.92), rgba(10,20,35,.65)); border-bottom:1px solid rgba(255,255,255,.1)}
+    header{position:sticky; top:0; z-index:80; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,20,35,.85), rgba(10,20,35,.55)); border-bottom:1px solid rgba(255,255,255,.08)}
     .nav{display:flex; align-items:center; justify-content:space-between; height:72px}
     .logo{display:flex; align-items:center; gap:.75rem}
     .logo-badge{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--grad-from),var(--grad-to)); display:grid; place-items:center; font-weight:800; color:white; letter-spacing:.5px}
-    .nav-right{display:flex; align-items:center; gap:10px}
-    .nav-links{display:flex; gap:6px; align-items:center}
-    .nav-links a{padding:.55rem .75rem; border-radius:12px; opacity:.95}
+    /* Desktop links */
+    .nav-links{display:flex; gap:.25rem; align-items:center}
+    .nav-links a{padding:.6rem .85rem; border-radius:10px; position:relative}
     .nav-links a:hover{background:rgba(255,255,255,.06)}
-    .nav-links a.active{background:rgba(255,255,255,.12); box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
-    .nav-cta{margin-left:4px}
-    .burger{display:none; background:transparent; border:0; color:var(--text-light); font-size:1.6rem; padding:.4rem .6rem; border-radius:10px}
-    .burger:focus-visible{outline:3px solid rgba(99,102,241,.8)}
+    .nav-links a:after{content:""; position:absolute; left:12px; right:12px; bottom:6px; height:2px; border-radius:2px; transform:scaleX(0); transform-origin:center; background:linear-gradient(90deg,var(--grad-from),var(--grad-to)); transition:transform .25s}
+    .nav-links a:hover:after{transform:scaleX(1)}
+    .nav-cta{margin-left:.4rem}
+    /* Burger */
+    .burger{display:none; background:transparent; border:0; color:var(--text-light); font-size:1.6rem}
+    /* Mobile menu (overlay) */
+    .mobile-overlay{position:fixed; inset:0; background:linear-gradient(180deg, rgba(10,20,35,.98), rgba(12,20,40,.94)); backdrop-filter:blur(16px); display:none; flex-direction:column; padding:92px 24px 32px; gap:10px}
+    .mobile-overlay.open{display:flex}
+    .mobile-overlay a{display:block; width:100%; text-align:left; padding:14px 12px; border-radius:12px; font-size:1.05rem; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04)}
+    .mobile-actions{margin-top:auto; display:grid; gap:10px}
+    html.menu-open, body.menu-open{overflow:hidden}
 
-    /* Mobile menu (full-screen sheet) */
     @media (max-width:1024px){
-      .burger{display:inline-flex}
+      .burger{display:block}
       .nav-links{display:none}
-      .sheet{position:fixed; inset:0; padding-top:80px; background:linear-gradient(180deg, rgba(10,20,35,.98), rgba(12,20,40,.96)); backdrop-filter:blur(16px); display:flex; flex-direction:column; gap:10px; transform:translateY(-100%); transition:transform .25s ease; z-index:70}
-      .sheet.open{transform:translateY(0)}
-      .sheet a{display:block; width:100%; text-align:center; padding:14px 18px; font-size:1.1rem; border-radius:14px}
-      .sheet .nav-cta{position:fixed; left:20px; right:20px; bottom:calc(16px + var(--safe-b)); justify-content:center}
-      .sheet-close{position:absolute; right:14px; top:14px; border:1px solid var(--glass-border); background:rgba(255,255,255,.06); color:#fff; font-size:1.2rem; border-radius:12px; padding:8px 12px}
     }
 
     /* Hero */
-    .hero{position:relative; padding:clamp(72px,8vw,120px) 0 84px; overflow:hidden}
+    .hero{position:relative; padding:clamp(80px,7vw,120px) 0 88px; overflow:hidden}
     .hero-bg{
       position:absolute; inset:-40%;
       background:
-        radial-gradient(60% 60% at 20% 10%, rgba(99,102,241,.28), transparent 60%),
-        radial-gradient(60% 60% at 80% 30%, rgba(47,128,237,.25), transparent 60%),
-        radial-gradient(60% 60% at 40% 90%, rgba(90,123,239,.22), transparent 60%);
-      filter:blur(40px); opacity:.22; animation:float 20s linear infinite alternate;
-      pointer-events:none;
+        radial-gradient(60% 60% at 20% 10%, rgba(99,102,241,.30), transparent 60%),
+        radial-gradient(60% 60% at 80% 30%, rgba(47,128,237,.26), transparent 60%),
+        radial-gradient(60% 60% at 40% 90%, rgba(90,123,239,.24), transparent 60%);
+      filter:blur(42px); opacity:.22; animation:float 21s linear infinite alternate; pointer-events:none;
     }
     @keyframes float{from{transform:translateY(-2%) scale(1)} to{transform:translateY(2%) scale(1.03)}}
 
     .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:34px; align-items:center}
-    @media (max-width:1024px){ .hero-grid{grid-template-columns:1fr} }
-
+    @media (max-width:960px){ .hero-grid{grid-template-columns:1fr; gap:22px} }
     .kpi{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
 
     /* Sections */
     section{padding:84px 0}
-    .section-header{margin-bottom:22px}
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
-    .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap)}
-    @media (max-width:1100px){ .grid-4{grid-template-columns:1fr 1fr} }
+    .section-header{margin-bottom:26px}
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    @media (max-width:1000px){ .grid-4{grid-template-columns:1fr 1fr} }
     @media (max-width:900px){ .grid-3{grid-template-columns:1fr 1fr} .grid-2{grid-template-columns:1fr} }
-    @media (max-width:600px){ .grid-3{grid-template-columns:1fr} }
+    @media (max-width:640px){ .grid-3,.grid-4{grid-template-columns:1fr} }
 
     .list{margin:0; padding-left:1.1em}
     .list li{margin:.35rem 0}
 
     /* Pricing */
-    .pricing{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
+    .pricing{display:grid; grid-template-columns:1fr 1fr; gap:18px}
     @media (max-width:900px){ .pricing{grid-template-columns:1fr} }
     .price{font-size:2rem; font-weight:700}
     .table-list{margin:0; padding:0; list-style:none}
     .table-list li{display:flex; align-items:flex-start; gap:.6rem; margin:.5rem 0}
 
-    /* Testimonials slider (full-width slides, reliable on mobile) */
+    /* Testimonials slider (more robust) */
     .slider{position:relative; overflow:hidden}
-    .slides{display:flex; transition:transform .5s ease}
-    .slide{flex:0 0 100%; padding:18px}
-    .dotbar{display:flex; gap:8px; justify-content:center; margin-top:14px}
-    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
-    .dot.active{background:#fff}
+    .slides{display:flex; transition:transform .55s ease; will-change:transform}
+    .slide{min-width:100%; padding:0}
+    .slide > blockquote{margin:0; padding:18px}
 
     /* Forms */
     .form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     .form .full{grid-column:1 / -1}
     .input{width:100%; padding:12px 14px; border-radius:14px; border:1px solid var(--glass-border); background:rgba(255,255,255,.06); color:#eaf0ff}
     .input:focus{outline:3px solid rgba(99,102,241,.7)}
-    label{font-size:.92rem; opacity:.95}
+    label{font-size:.92rem; opacity:.92}
     .consent{display:flex; gap:.6rem; align-items:flex-start; font-size:.9rem}
 
     /* Footer */
-    footer{padding:36px 0 64px; border-top:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(10,20,35,.5), rgba(10,20,35,.75))}
+    footer{padding:38px 0 60px; border-top:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(10,20,35,.5), rgba(10,20,35,.75))}
 
-    /* Animations on reveal */
+    /* Reveal */
     [data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .4s ease, transform .4s ease}
     [data-reveal].visible{opacity:1; transform:none}
 
     /* Back to top */
-    .to-top{position:fixed; right:18px; bottom:18px; z-index:55}
+    .to-top{position:fixed; right:18px; bottom:18px; z-index:70}
 
     /* Reduced motion */
     @media (prefers-reduced-motion:reduce){
@@ -193,7 +179,7 @@
   <a class="skip pill" href="#main">Aller au contenu</a>
 
   <!-- Cookie banner -->
-  <div id="cookie" class="container" style="position:sticky; top:0; z-index:65; display:none;">
+  <div id="cookie" class="container" style="position:sticky; top:0; z-index:90; display:none;">
     <div class="card" style="margin:12px auto; padding:12px 16px; display:flex; gap:12px; align-items:center; justify-content:space-between">
       <div style="font-size:.95rem">Nous utilisons des cookies d’analytics anonymisés. <a href="./confidentialite.html" style="text-decoration:underline">En savoir plus</a>.</div>
       <div style="display:flex; gap:8px">
@@ -209,28 +195,26 @@
         <span class="logo-badge">TBF</span>
         <strong>To Be Father</strong>
       </a>
-      <div class="nav-right">
-        <!-- Desktop links -->
-        <div id="links" class="nav-links" role="menubar" aria-label="Liens principaux">
-          <a href="#app" role="menuitem" data-spy="app">Application</a>
-          <a href="#media" role="menuitem" data-spy="media">Média</a>
-          <a href="#why" role="menuitem" data-spy="why">Pourquoi</a>
-          <a href="#features" role="menuitem" data-spy="features">Fonctionnalités</a>
-          <a href="#pricing" role="menuitem" data-spy="pricing">Prix</a>
-          <a href="#partners" role="menuitem" data-spy="partners">Partenariats</a>
-          <a href="#contact" role="menuitem" data-spy="contact">Contact</a>
-          <a href="faq.html" class="pill" role="menuitem" aria-label="Aller à la FAQ">FAQ</a>
-        </div>
-        <a href="#waitlist" class="btn primary nav-cta">Liste d’attente</a>
 
-        <!-- Burger -->
-        <button class="burger" aria-expanded="false" aria-controls="sheet" id="burger" aria-label="Ouvrir le menu">☰</button>
+      <!-- Desktop links -->
+      <div class="nav-links" role="menubar" aria-label="Liens principaux">
+        <a href="#app" role="menuitem">Application</a>
+        <a href="#media" role="menuitem">Média</a>
+        <a href="#why" role="menuitem">Pourquoi</a>
+        <a href="#features" role="menuitem">Fonctionnalités</a>
+        <a href="#pricing" role="menuitem">Prix</a>
+        <a href="#partners" role="menuitem">Partenariats</a>
+        <a href="#contact" role="menuitem">Contact</a>
+        <a href="faq.html" class="pill" role="menuitem" aria-label="Aller à la FAQ">FAQ</a>
+        <a href="#waitlist" class="btn primary nav-cta" role="menuitem">Liste d’attente</a>
       </div>
+
+      <!-- Burger button -->
+      <button class="burger" aria-expanded="false" aria-controls="mobileMenu" id="burger" aria-label="Ouvrir le menu">☰</button>
     </nav>
 
-    <!-- Mobile sheet -->
-    <div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-label="Menu mobile">
-      <button class="sheet-close" id="sheetClose" aria-label="Fermer le menu">✕</button>
+    <!-- Mobile overlay menu -->
+    <div id="mobileMenu" class="mobile-overlay" role="dialog" aria-modal="true" aria-label="Menu">
       <a href="#app">Application</a>
       <a href="#media">Média</a>
       <a href="#why">Pourquoi</a>
@@ -239,19 +223,22 @@
       <a href="#partners">Partenariats</a>
       <a href="#contact">Contact</a>
       <a href="faq.html">FAQ</a>
-      <a href="#waitlist" class="btn primary nav-cta">Liste d’attente</a>
+      <div class="mobile-actions">
+        <a href="#waitlist" class="btn primary block">Rejoindre la liste d’attente</a>
+        <button id="menuClose" class="btn ghost block" aria-label="Fermer le menu">Fermer</button>
+      </div>
     </div>
   </header>
 
   <main id="main">
     <!-- HERO -->
-    <section class="hero" id="top">
+    <section class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div data-reveal>
           <div class="pill" aria-hidden="true">Lancement&nbsp;: juillet 2026 · iOS & Android</div>
-          <h1 style="font-size:clamp(2.2rem,4.5vw,3.4rem); margin-top:14px">La première application copilote de la paternité.</h1>
-          <p style="font-size:1.06rem; opacity:.93; max-width:60ch">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant. Une approche simple, personnalisée et respectueuse de chaque parcours.</p>
+          <h1 style="font-size:clamp(2.2rem,4.6vw,3.6rem); margin-top:14px">La première application copilote de la paternité.</h1>
+          <p style="font-size:clamp(1rem,1.3vw,1.1rem); opacity:.95; max-width:62ch">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px">
             <a href="#waitlist" class="btn primary">Rejoindre la liste d’attente</a>
             <a href="#media" class="btn ghost">Découvrir le média</a>
@@ -269,4 +256,343 @@
           </div>
         </div>
         <div data-reveal style="display:grid;place-items:center">
-          <div class="card" style
+          <div class="card" style="width:min(520px,100%); padding:14px">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop" alt="Illustration d’un père avec son enfant" style="border-radius:14px">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application -->
+    <section id="app">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>📱 L’Application To Be Father</h2>
+          <p>To Be Father est la première application copilote de la paternité. Grâce à une IA spécialisée, elle accompagne les futurs et jeunes pères dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Conseils médicaux, juridiques et pratiques</strong>
+            <ul class="list">
+              <li>Basés sur des sources fiables et validées</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Checklists & rappels personnalisés</strong>
+            <ul class="list">
+              <li>Suivi semaine par semaine</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Soutien émotionnel & communauté (à terme)</strong>
+            <ul class="list">
+              <li>Espace d’échange prévu</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:14px" role="note">Sortie prévue: juillet 2026 · iOS & Android</div>
+      </div>
+    </section>
+
+    <!-- Media -->
+    <section id="media">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>📰 Le Média To Be Father</h2>
+          <p>Plus qu’une app, To Be Father est aussi un média engagé. Nous brisons les tabous, partageons des témoignages et donnons la parole aux experts.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal><strong>Interviews de spécialistes</strong></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Réels éducatifs et inspirants</strong></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Contenus dédiés aux papas</strong></div>
+        </div>
+        <div style="margin-top:14px"><a class="btn ghost" href="https://instagram.com/tobefather.off" target="_blank" rel="noopener">Suivre @tobefather.off</a></div>
+      </div>
+    </section>
+
+    <!-- Pourquoi / Vision -->
+    <section id="why">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Pourquoi To Be Father ?</h2>
+        </div>
+        <div class="grid-4">
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Constat</strong>
+            <p>175 millions d’hommes deviennent pères chaque année, mais trop peu d’outils leur sont dédiés.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Objectif</strong>
+            <p>Permettre aux pères de se sentir utiles, importants et soutenus.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Égalité parentale</strong>
+            <p>Parentalité équilibrée et partagée: une nécessité pour le bien-être de tous.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <strong>Ambition</strong>
+            <p>Convaincre en France, Europe et monde que la paternité mérite un soutien concret.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section id="audience">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Pour qui ?</h2>
+          <p>À tous les pères: seuls, en couple, mariés, homosexuels… Application multiculturelle et personnalisée. Utile aussi pour les mamans (rééquilibrage de la charge mentale).</p>
+          <span class="pill">Déjà papa ? Oui, l’app s’adapte à votre situation.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section id="features">
+      <div class="container">
+        <div class="section-header" data-reveal><h2>Fonctionnalités clés</h2></div>
+        <div class="grid-3">
+          <div class="card" style="padding:18px" data-reveal><strong>IA personnalisée</strong> <p>Accès illimité en Premium</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Suivi & checklists</strong> <p>Grossesse → premières années</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Conseils en temps réel</strong> <p>Par des pros (médecins, SF, psy…)</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Espace communautaire</strong> <p>Prévu</p></div>
+          <div class="card" style="padding:18px" data-reveal><strong>Rappels & to-dos</strong> <p>Partage avec l’autre parent (à terme)</p></div>
+          <div class="card faq-teaser" style="padding:18px" data-reveal>
+            <strong>Questions fréquentes</strong>
+            <p><a class="btn ghost" href="faq.html" aria-label="Voir la FAQ">Voir la FAQ →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prix -->
+    <section id="pricing">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Prix & abonnements</h2>
+        </div>
+        <div class="pricing">
+          <div class="card" style="padding:18px" data-reveal>
+            <h3>Gratuit</h3>
+            <div class="price">0 €</div>
+            <ul class="table-list">
+              <li>✔︎ Essentiels + IA (jusqu’à 5 questions/jour)</li>
+            </ul>
+            <a href="#waitlist" class="btn ghost" aria-label="Être informé du lancement - gratuit">Être informé du lancement</a>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <h3>Premium</h3>
+            <div class="price">4,39 €/mois</div>
+            <p>Annuel: 35,99 €/an (3,59 €/mois, remise 20%)</p>
+            <ul class="table-list">
+              <li>✔︎ IA personnalisée illimitée</li>
+              <li>✔︎ Suivi avancé</li>
+              <li>✔︎ Contenus & outils exclusifs</li>
+            </ul>
+            <a href="#waitlist" class="btn primary" aria-label="Être informé du lancement - premium">Être informé du lancement</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenariats -->
+    <section id="partners">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Partenariats & experts</h2>
+          <p>Nous collaborons avec des médecins et spécialistes (obstétriciens, sages-femmes, psychologues, sexologues, juristes…). Découvrez-les dans la story à la une “PRO TBF” sur Instagram.</p>
+          <p>Entreprises & institutions: contactez-nous pour proposer To Be Father à vos équipes. Partenariats mutuelles/institutions à venir (congé paternité, coûts famille…).</p>
+          <a href="#contact" class="btn ghost">Proposer TBF à vos salariés</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Médias & réseaux -->
+    <section id="social">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2>Médias & réseaux</h2>
+          <p>Depuis septembre 2025, To Be Father est aussi un média présent sur Instagram, LinkedIn, Facebook et TikTok: @tobefather.off.</p>
+        </div>
+
+        <div class="slider card" style="padding:0" aria-roledescription="carousel" aria-label="Témoignages de pères">
+          <div class="slides" id="slides">
+            <div class="slide"><blockquote class="card">“Enfin un outil qui parle aux pères sans clichés.” — Julien</blockquote></div>
+            <div class="slide"><blockquote class="card">“Les checklists m’ont sauvé la tête pendant la grossesse.” — Samir</blockquote></div>
+            <div class="slide"><blockquote class="card">“Hâte de la communauté pour échanger.” — Maxime</blockquote></div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://instagram.com/tobefather.off">Instagram</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/">LinkedIn</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.facebook.com/">Facebook</a>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/">TikTok</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Waitlist -->
+    <section id="waitlist">
+      <div class="container">
+        <div class="card" style="padding:18px" data-reveal>
+          <h2>Rejoindre la liste d’attente</h2>
+          <form class="form" action="https://formspree.io/f/your-id" method="POST">
+            <div>
+              <label for="wl-name">Nom</label>
+              <input class="input" id="wl-name" name="name" required placeholder="Votre nom">
+            </div>
+            <div>
+              <label for="wl-email">Email</label>
+              <input class="input" id="wl-email" name="email" type="email" required placeholder="vous@exemple.com">
+            </div>
+            <div class="full">
+              <label for="wl-notes">Message (optionnel)</label>
+              <textarea class="input" id="wl-notes" name="message" rows="3" placeholder="Je veux être informé du lancement…"></textarea>
+            </div>
+            <div class="full consent">
+              <input id="wl-consent" type="checkbox" required>
+              <label for="wl-consent">J’accepte que mes données soient utilisées pour me recontacter à propos de To Be Father. <a href="./confidentialite.html">Politique de confidentialité</a>.</label>
+            </div>
+            <div class="full">
+              <button class="btn primary" type="submit">Je m’inscris</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header" data-reveal><h2>Contact</h2></div>
+        <div class="grid-2">
+          <div class="card" style="padding:18px" data-reveal>
+            <p>Email: <a href="mailto:contact@tobefather.com">contact@tobefather.com</a></p>
+            <p>Entreprises / institutions / professionnels de santé: parlons partenariat.</p>
+          </div>
+          <div class="card" style="padding:18px" data-reveal>
+            <form class="form" action="mailto:contact@tobefather.com" method="post" enctype="text/plain">
+              <div>
+                <label for="name">Nom</label>
+                <input class="input" id="name" name="name" required>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input class="input" id="email" name="email" type="email" required>
+              </div>
+              <div class="full">
+                <label for="subject">Sujet</label>
+                <input class="input" id="subject" name="subject" required>
+              </div>
+              <div class="full">
+                <label for="message">Message</label>
+                <textarea class="input" id="message" name="message" rows="4" required></textarea>
+              </div>
+              <div class="full consent">
+                <input id="rgpd" type="checkbox" required>
+                <label for="rgpd">J’accepte le traitement de mes données selon le RGPD.</label>
+              </div>
+              <div class="full"><button class="btn ghost" type="submit">Envoyer</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a href="#top" class="btn primary to-top" aria-label="Retour en haut">↑</a>
+  </main>
+
+  <footer>
+    <div class="container" style="display:grid; gap:18px">
+      <div class="logo"><span class="logo-badge">TBF</span><strong>To Be Father</strong></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <a href="#">Accueil</a> ·
+        <a href="#app">Application</a> ·
+        <a href="#media">Média</a> ·
+        <a href="#pricing">Prix</a> ·
+        <a href="faq.html">FAQ</a> ·
+        <a href="#partners">Partenariats</a> ·
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="opacity:.8">© To Be Father — <a href="./confidentialite.html">RGPD & Confidentialité</a> — <a href="./cgu.html">CGU</a>.</div>
+    </div>
+  </footer>
+
+  <script>
+    /* --- Mobile menu: robust (scroll-lock + focus trap + ESC + close on link) --- */
+    const burger = document.getElementById('burger');
+    const overlay = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('menuClose');
+    let lastFocus = null;
+
+    function openMenu(){
+      lastFocus = document.activeElement;
+      overlay.classList.add('open');
+      document.documentElement.classList.add('menu-open');
+      document.body.classList.add('menu-open');
+      burger.setAttribute('aria-expanded','true');
+      // focus first link
+      const firstLink = overlay.querySelector('a,button');
+      firstLink && firstLink.focus();
+      // focus trap
+      function trap(e){
+        if(!overlay.classList.contains('open')) return;
+        if(e.key === 'Tab'){
+          const focusables = [...overlay.querySelectorAll('a,button')].filter(el => !el.disabled);
+          const first = focusables[0], last = focusables[focusables.length-1];
+          if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+        } else if(e.key === 'Escape'){ closeMenu(); }
+      }
+      overlay.dataset.trapInstalled || document.addEventListener('keydown', trap);
+      overlay.dataset.trapInstalled = '1';
+    }
+    function closeMenu(){
+      overlay.classList.remove('open');
+      document.documentElement.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded','false');
+      lastFocus && lastFocus.focus();
+    }
+    burger?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    // Close when clicking a link
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    // Auto-close on resize to desktop
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 1024 && overlay.classList.contains('open')) closeMenu();
+    });
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    }, {threshold:.12});
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    /* Slider: full-width slides -> robust on mobile */
+    const slides = document.getElementById('slides');
+    let sliderIndex = 0;
+    function sizeSlides(){
+      const w = slides.parentElement.offsetWidth;
+      [...slides.children].forEach(s => s.style.minWidth = w+'px');
+      slides.style.transform = `translateX(-${sliderIndex*w}px)`;
+    }
+    window.addEventListener('resize', sizeSlides);
+    sizeSlides();
+    setInterval(()=> {
+      const total = slides.children.length;
+      sliderIndex = (sliderIndex + 1) % total;
+      const w = slides.parentElement.offsetWidth;
+      slides.style.transform = `translateX(-${sliderIndex*w}px)`;
+    }, 5000);
+
+    /* Cookie banner */
+    const c = document.getElementById('cookie');
+    if(!localStorage.getItem('tbf_cookie')) c.style.display='block';
+    document.getElementById('cookie-accept')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','yes'); c.remove();});
+    document.getElementById('cookie-decline')?.addEventListener('click',()=>{localStorage.setItem('tbf_cookie','no'); c.remove();});
+  </script>
+</body>
+</html>
