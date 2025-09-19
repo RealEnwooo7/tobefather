@@ -154,6 +154,7 @@
 
     /* Footer */
     footer{padding:38px 0 60px; border-top:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(10,20,35,.5), rgba(10,20,35,.75))}
+
     .footer-brand{display:flex; align-items:center; gap:.6rem}
 
     /* Reveal */
@@ -170,6 +171,26 @@
       .slides{transition:none}
       [data-reveal]{transition:none}
       .neon{animation:none}
+    }
+
+    /* --- Titres "bleu fluo" comme le CTA --- */
+    h1, h2, h3{
+      background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 14px rgba(108,99,255,.55), 0 0 28px rgba(108,99,255,.35);
+      filter: drop-shadow(0 10px 24px rgba(108,99,255,.25));
+      animation: glow 3.2s ease-in-out infinite alternate;
+    }
+    /* Accessibilité : mode couleurs forcées */
+    @media (forced-colors: active){
+      h1, h2, h3{
+        background: none !important;
+        color: ButtonText !important;
+        text-shadow: none !important;
+        animation: none !important;
+      }
     }
   </style>
 
@@ -261,7 +282,7 @@
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-inner">
         <h1 class="hero-title">
-          La première application <span style="background:linear-gradient(90deg,var(--grad-from),var(--grad-to)); -webkit-background-clip:text; background-clip:text; color:transparent;">copilote</span> de la paternité.
+          La première application <span>copilote</span> de la paternité.
         </h1>
         <p class="hero-sub">To Be Father accompagne les futurs et jeunes pères, dès l’annonce de la grossesse jusqu’aux premières années de l’enfant.</p>
         <div class="hero-cta">
