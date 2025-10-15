@@ -1,30 +1,169 @@
-<!doctype html><html lang='fr'><head>
+<!doctype html>
+<html lang="fr">
+<head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>TBF</title>
+<meta name="theme-color" content="#0E1420">
+<title>To Be Father — l’IA copilote de la paternité</title>
+<meta name="description" content="De la grossesse aux premières années : conseils, checklists, rappels et IA spécialisée pour les pères.">
+<link rel="preload" as="image" href="assets/images/bg-dark-glass-1.jpg">
 <link rel="stylesheet" href="ios-glass.css">
 <link rel="stylesheet" href="styles.css">
-</head><body class='page'>
-<div class='bg-media' aria-hidden='true'><img src='assets/images/bg-loop.gif' alt=''></div>
-<header class="navbar glass"><div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px"><a class="brand" href="index.html"><img src="assets/icons/logo.svg" alt="TBF" height="28"></a><nav class="menu"><a class="btn" href="index.html">Accueil</a><a class="btn" href="faq.html">FAQ</a><a class="btn" href="pricing.html">Prix</a></nav></div>
-<div id="menu" class="mobile-menu" aria-hidden="true">
-  <div class="panel glass edge">
-    <a href="index.html">Accueil</a>
-    <a href="faq.html">FAQ</a>
-    <a href="pricing.html">Prix</a>
-    <a href="mailto:contact@tobefather.com">Contact</a>
-  </div>
-</div>\n</header>
-<main class='container'><header class='section'><h1>Prix</h1><div class='liquid-switch' data-mode='monthly' role='group' aria-label='Basculer mensuel / annuel'><span class='bubble' aria-hidden='true'></span><button class='opt' data-mode='monthly' aria-pressed='true'>Mensuel</button><button class='opt' data-mode='yearly' aria-pressed='false'>Annuel</button></div>
-<div id="menu" class="mobile-menu" aria-hidden="true">
-  <div class="panel glass edge">
-    <a href="index.html">Accueil</a>
-    <a href="faq.html">FAQ</a>
-    <a href="pricing.html">Prix</a>
-    <a href="mailto:contact@tobefather.com">Contact</a>
-  </div>
-</div>\n</header><section class='section'><div class='glass card'><h3>Gratuit</h3><div data-price data-monthly='0 €' data-yearly='0 €'>0 €</div></div></section></main>
-<footer class="container"><div class="glass card" style="text-align:center"><img src="assets/icons/logo.svg" alt="" height="28"><div style="margin-top:8px"><a class="btn" href="mailto:contact@tobefather.com">contact@tobefather.com</a></div></div></footer><script src="app.js" defer></script>
+<style>
+@font-face{
+  font-family: "Inter";
+  src: local("Inter"), local("Inter Regular"), local("Inter-Medium"), local("Inter Medium");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+</style>
 
-<nav class="tabbar glass"><a class="tab" href="index.html"><img src="assets/icons/logo.svg" alt="" width="18" height="18"><span>Accueil</span></a><a class="tab" href="faq.html"><img src="assets/icons/arrow.svg" alt="" width="18" height="18"><span>FAQ</span></a><a class="tab" href="pricing.html"><img src="assets/icons/check.svg" alt="" width="18" height="18"><span>Prix</span></a><a class="tab" href="mailto:contact@tobefather.com"><img src="assets/icons/x.svg" alt="" width="18" height="18"><span>Contact</span></a></nav>
-</body></html>
+</head>
+<body class="page">
+
+
+<header class="navbar glass" role="banner">
+  <div class="inner container">
+    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
+      <img src="assets/icons/logo.svg" alt="Logo TBF" width="120" height="24" loading="lazy">
+      <span class="sr-only">To Be Father</span>
+    </a>
+    <nav class="links" role="navigation" aria-label="Navigation">
+      <a href="index-desktop.html">Accueil</a>
+      <a href="faq.html">FAQ</a>
+      <a href="pricing.html" aria-current="page">Prix</a>
+      <a href="mailto:contact@tobefather.com">Contact</a>
+    </nav>
+    <button class="burger" aria-label="Ouvrir le menu" aria-controls="menu" aria-expanded="false"><span></span></button>
+  </div>
+  <div id="menu" class="mobile-menu" aria-hidden="true">
+    <div class="panel glass edge">
+      <a href="index-mobile.html">Accueil</a>
+      <a href="faq.html">FAQ</a>
+      <a href="pricing.html">Prix</a>
+      <a href="mailto:contact@tobefather.com">Contact</a>
+    </div>
+  </div>
+</header>
+
+
+<main class="container">
+  <header class="section centered">
+    <div class="glass edge card shadow-hover" role="region" aria-label="Choix de facturation">
+      <p class="kicker upper">Prix</p>
+      <div class="centered">
+        <!-- Liquid glass toggle -->\n        <button aria-label="Basculer facturation" aria-pressed="false" class="liquid-toggle" id="billing-toggle">\n          <div class="indicator"></div>\n          <div class="window"><div class="bubble"></div></div>\n          <span class="lt-label lt-month">Mensuel</span>\n          <span class="lt-label lt-year">Annuel</span>\n        </button>\n        <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>\n          <filter id="lt-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -10" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs></svg>
+          <button id="toggle-monthly" role="tab" aria-pressed="true" aria-controls="plans">Mensuel</button>
+          <button id="toggle-yearly" role="tab" aria-pressed="false" aria-controls="plans">Annuel</button>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px">Respecte les tarifs : <strong>4,39 €/mois</strong> et <strong>35,99 €/an (-20 %)</strong>.</p>
+    </div>
+  </header>
+
+  <section id="plans" class="pricing-grid">
+    <article class="plan glass edge card shadow-hover" aria-label="Gratuit">
+      <h3>Gratuit</h3>
+      <div class="price" data-price data-monthly="0 €" data-yearly="0 €">0 €</div>
+      <div class="features">
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> IA : <strong>5 questions/jour</strong></div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Checklists & rappels de base</div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Conseils essentiels</div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Accès média</div>
+        <div class="feature"><img class="check" src="assets/icons/arrow.svg" alt="" aria-hidden="true"> Communauté : <strong>à venir</strong></div>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn btn-secondary" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Commencer Gratuitement</a>
+    </article>
+
+    <article class="plan glass edge card shadow-hover" aria-label="Premium">
+      <h3>Premium</h3>
+      <div class="price" data-price data-monthly="4,39 €/mois" data-yearly="35,99 €/an">4,39 €/mois</div>
+      <div class="features">
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> IA <strong>illimitée</strong> et personnalisée</div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Toutes fonctionnalités avancées de suivi</div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Contenus exclusifs + outils pratiques</div>
+        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Priorité nouveautés + support</div>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn btn-primary shimmer" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Passer en Premium</a>
+    </article>
+  </section>
+
+  <section class="table glass edge card shadow-hover">
+    <h2>Comparaison</h2>
+    <div class="spacer"></div>
+    <div class="table-responsive">
+      <table aria-label="Tableau de comparaison des offres">
+        <thead>
+          <tr>
+            <th>Fonctionnalité</th>
+            <th class="center">Premium</th>
+            <th class="center">Gratuit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IA personnalisée</td>
+            <td class="center">✅</td>
+            <td class="center">✔️ (5/j)</td>
+          </tr>
+          <tr>
+            <td>Checklists & rappels</td>
+            <td class="center">✅</td>
+            <td class="center">✔️ (Base)</td>
+          </tr>
+          <tr>
+            <td>Suivi grossesse → premières années</td>
+            <td class="center">✅</td>
+            <td class="center">✔️</td>
+          </tr>
+          <tr>
+            <td>Conseils d’experts</td>
+            <td class="center">✅</td>
+            <td class="center">✔️ (Essentiels)</td>
+          </tr>
+          <tr>
+            <td>Communauté de pères</td>
+            <td class="center">⏳ Bientôt</td>
+            <td class="center">⏳ Bientôt</td>
+          </tr>
+          <tr>
+            <td>Partage calendrier</td>
+            <td class="center">✅</td>
+            <td class="center">–</td>
+          </tr>
+          <tr>
+            <td>Contenus exclusifs</td>
+            <td class="center">✅</td>
+            <td class="center">–</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+
+<footer class="container">
+  <div class="footer-inner glass edge card shadow-hover">
+    <img src="assets/icons/logo.svg" alt="Logo To Be Father" width="140" height="28" loading="lazy">
+    <div class="social">
+      <span class="tag">@tobefather.off</span>
+      <a class="btn btn-secondary" href="mailto:contact@tobefather.com">contact@tobefather.com</a>
+    </div>
+    <small class="muted">© 2025 To Be Father. Design “liquid glass”. Respect RGPD.</small>
+  </div>
+</footer>
+<script src="app.js" defer></script>
+
+<div class="bg-layer" aria-hidden="true"></div>
+<img src="assets/images/bg-anim.gif" class="bg-anim" alt="" aria-hidden="true">
+
+
+
+
+</body>
+</html>
