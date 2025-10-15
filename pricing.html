@@ -43,7 +43,7 @@
     <div class="glass edge card shadow-hover" role="region" aria-label="Choix de facturation">
       <p class="kicker upper">Prix</p>
       <div class="centered">
-        <div class="segmented" role="tablist" aria-label="Basculer mensuel / annuel">
+        <!-- Liquid glass toggle -->\n        <button aria-label="Basculer facturation" aria-pressed="false" class="liquid-toggle" id="billing-toggle">\n          <div class="indicator"></div>\n          <div class="window"><div class="bubble"></div></div>\n          <span class="lt-label lt-month">Mensuel</span>\n          <span class="lt-label lt-year">Annuel</span>\n        </button>\n        <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>\n          <filter id="lt-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -10" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs></svg>
           <button id="toggle-monthly" role="tab" aria-pressed="true" aria-controls="plans">Mensuel</button>
           <button id="toggle-yearly" role="tab" aria-pressed="false" aria-controls="plans">Annuel</button>
         </div>
@@ -64,7 +64,7 @@
         <div class="feature"><img class="check" src="assets/icons/arrow.svg" alt="" aria-hidden="true"> Communauté : <strong>à venir</strong></div>
       </div>
       <div class="spacer"></div>
-      <a class="btn btn-secondary" href="#">Commencer Gratuitement</a>
+      <a class="btn btn-secondary" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Commencer Gratuitement</a>
     </article>
 
     <article class="plan glass edge card shadow-hover" aria-label="Premium">
@@ -77,7 +77,7 @@
         <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Priorité nouveautés + support</div>
       </div>
       <div class="spacer"></div>
-      <a class="btn btn-primary shimmer" href="#">Passer en Premium</a>
+      <a class="btn btn-primary shimmer" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Passer en Premium</a>
     </article>
   </section>
 

@@ -1,12 +1,12 @@
 /* iOS liquid glass tokens and utilities */
 :root{
-  --bg-0:#090B10;
-  --bg-1:#0E1420;
+  --bg-0:#0B0F18;
+  --bg-1:#121A26;
   --accent-1:#1C3B6B;
   --accent-2:#2F80ED;
   --accent-3:#9DB4FF;
-  --glass:rgba(255,255,255,0.06);
-  --stroke:rgba(255,255,255,0.12);
+  --glass:rgba(255,255,255,0.09);
+  --stroke:rgba(255,255,255,0.16);
   --text:#E6EAF2;
   --muted:#A9B1C7;
 
@@ -112,3 +112,28 @@ html,body{background: var(--bg-0); color:var(--text);}
 
 .icon{ width:20px; height:20px; display:inline-block; opacity:.86; }
 .icon:hover{ opacity:1; }
+
+/* Neon emphasis and enhanced liquid glass */
+:root{
+  --neon:#7DB3FF;
+}
+.neon, mark.neon{ color:#ffffff; background:transparent; position:relative; text-shadow: 0 0 10px color-mix(in srgb, var(--neon), transparent 30%), 0 0 22px var(--accent-2); }
+mark.neon{ padding:0 .2em; border-radius:6px; }
+.btn--neon{ position:relative; }
+.btn--neon::before{
+  content:""; position:absolute; inset:-2px; border-radius:inherit;
+  background: radial-gradient(60% 80% at 30% 20%, rgba(157,180,255,.45), transparent 60%),
+              radial-gradient(70% 90% at 70% 80%, rgba(47,128,237,.35), transparent 60%);
+  filter: blur(12px); opacity:.55; z-index:-1; transition: opacity var(--duration) var(--easing), filter var(--duration) var(--easing);
+}
+.btn--neon:hover::before{ opacity:.9; filter: blur(16px); }
+.btn--neon:active::before{ opacity:.7; filter: blur(10px); }
+
+/* Glint sweep on cards */
+.glass.edge{ overflow:hidden; }
+.glass.edge::after{
+  content:""; position:absolute; inset:-200%; background: linear-gradient(120deg, transparent 45%, rgba(255,255,255,.12), transparent 55%);
+  transform: translateX(-30%) rotate(12deg); animation: cardShine 6s linear infinite;
+  pointer-events:none;
+}
+@keyframes cardShine{ 0%{ transform: translateX(-30%) rotate(12deg);} 100%{ transform: translateX(30%) rotate(12deg);} }

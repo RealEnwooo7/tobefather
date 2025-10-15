@@ -20,6 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Pricing toggle
+  // Liquid toggle -> monthly/yearly
+  const lt = document.getElementById('billing-toggle');
+  if (lt){
+    // Initialize from session or default monthly (false)
+    let pref = null; try{ pref = sessionStorage.getItem('billing'); }catch(e){}
+    const set = (yearly)=>{
+      lt.setAttribute('aria-pressed', yearly ? 'true':'false');
+      lt.style.setProperty('--complete', yearly ? 100 : 0);
+      setBilling(yearly ? 'yearly':'monthly');
+    };
+    set(pref === 'yearly');
+    lt.addEventListener('click', ()=>{
+      const yearly = lt.getAttribute('aria-pressed') !== 'true';
+      set(yearly);
+      try{ sessionStorage.setItem('billing', yearly ? 'yearly':'monthly'); }catch(e){}
+    });
+  }
+
   const monthlyBtn = document.getElementById('toggle-monthly');
   const yearlyBtn = document.getElementById('toggle-yearly');
   const priceEls = document.querySelectorAll('[data-price]');
