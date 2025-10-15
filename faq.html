@@ -1,177 +1,348 @@
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>FAQ – To Be Father</title>
-  <meta name="description" content="Questions fréquentes à propos de To Be Father : application, prix, cibles, valeurs, médias, partenariats, sécurité et développement.">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{ --night:#0E2740; --text:#E6EAF0; --grad-from:#2F80ED; --grad-to:#6C63FF; --glass:rgba(255,255,255,.08); --border:rgba(255,255,255,.18); --radius:20px; }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:linear-gradient(160deg,#0E2740,#0B1B2B); color:var(--text); font-family:Inter,system-ui,sans-serif; line-height:1.7}
-    a{color:inherit; text-decoration:none}
-    .container{max-width:900px; margin:0 auto; padding:20px}
-    .card{background:var(--glass); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:saturate(150%) blur(14px); box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 1.1rem; border-radius:14px; font-weight:600}
-    .btn.primary{background:linear-gradient(90deg,var(--grad-from),var(--grad-to)); color:#fff}
-    .btn.ghost{border:1px solid var(--border); background:rgba(255,255,255,.06)}
-    header{position:sticky; top:0; padding:10px 0; backdrop-filter:blur(10px)}
-    h1{font-family:Poppins,Inter,sans-serif; margin:.5rem 0 1rem; text-align:center}
-    h3{margin:1.2rem 0 .6rem}
-    details{border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.05); padding:12px 14px}
-    details + details{margin-top:10px}
-    summary{cursor:pointer; font-weight:700; outline:none}
-    summary::-webkit-details-marker{display:none}
-    summary:focus-visible{outline:3px solid rgba(99,102,241,.8); border-radius:10px}
-    .group{margin:16px 0}
-    .lead{opacity:.9; text-align:center}
-    .logo-img{width:30px; height:30px; border-radius:8px; object-fit:cover}
-  </style>
 
-  <!-- JSON-LD (questions inchangées) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Quand sortira l’application ?","acceptedAnswer":{"@type":"Answer","text":"Juillet 2026. La bêta privée sera annoncée en amont sur nos réseaux pour recueillir les retours et améliorer l’expérience avant le lancement public."}},
-      {"@type":"Question","name":"iOS & Android ?","acceptedAnswer":{"@type":"Answer","text":"Oui (App Store & Google Play). L’application sera disponible sur iPhone et Android, avec une expérience cohérente et des performances optimisées sur les deux plateformes."}},
-      {"@type":"Question","name":"Utilisable dès la grossesse ?","acceptedAnswer":{"@type":"Answer","text":"Absolument. Dès l’annonce, l’app propose des conseils adaptés à chaque trimestre, ainsi que des rappels pratiques et des checklists évolutives."}},
-      {"@type":"Question","name":"Espace pour échanger ?","acceptedAnswer":{"@type":"Answer","text":"Souhaité à terme. Nous priorisons une modération bienveillante et des espaces thématiques (sommeil, charge mentale, retour au travail, etc.)."}},
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E1420">
+<title>To Be Father — l’IA copilote de la paternité</title>
+<meta name="description" content="De la grossesse aux premières années : conseils, checklists, rappels et IA spécialisée pour les pères.">
+<link rel="preload" as="image" href="assets/images/bg-dark-glass-1.jpg">
+<link rel="stylesheet" href="ios-glass.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+@font-face{
+  font-family: "Inter";
+  src: local("Inter"), local("Inter Regular"), local("Inter-Medium"), local("Inter Medium");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+</style>
 
-      {"@type":"Question","name":"Version gratuite ?","acceptedAnswer":{"@type":"Answer","text":"Oui, essentiels + IA (5 questions/jour). La version gratuite couvre les bases, avec du contenu de qualité et des outils utiles au quotidien."}},
-      {"@type":"Question","name":"Prix premium ?","acceptedAnswer":{"@type":"Answer","text":"4,39 € / mois. Le tarif est pensé pour rester accessible tout en finançant la qualité éditoriale et les validations d’experts."}},
-      {"@type":"Question","name":"Que comprend l’abonnement ?","acceptedAnswer":{"@type":"Answer","text":"IA illimitée, suivi avancé, contenus & outils exclusifs. Vous débloquez aussi des vues plus détaillées, des rappels intelligents et des futures fonctionnalités communautaires."}},
-      {"@type":"Question","name":"Offre annuelle ?","acceptedAnswer":{"@type":"Answer","text":"35,99 € / an (−20%). Cette formule réduit le coût mensuel et inclut les mêmes avantages Premium."}},
-
-      {"@type":"Question","name":"À qui ?","acceptedAnswer":{"@type":"Answer","text":"À tous les pères; multiculturel & personnalisé. L’app s’adapte à votre contexte familial, culturel et professionnel."}},
-      {"@type":"Question","name":"Utile pour les mamans ?","acceptedAnswer":{"@type":"Answer","text":"Oui, rééquilibre la charge mentale. Les outils de partage et les checklists permettent une organisation plus fluide au sein du couple."}},
-      {"@type":"Question","name":"Déjà papa ?","acceptedAnswer":{"@type":"Answer","text":"Oui. To Be Father se calibre pour les seconds enfants, les familles recomposées et différents rythmes de vie."}},
-      {"@type":"Question","name":"Différences vs autres apps ?","acceptedAnswer":{"@type":"Answer","text":"1er assistant personnel de paternité, IA spécialisée qui s’adapte en temps réel. Notre approche met le père au centre, sans clichés, avec un accompagnement expertisé."}},
-
-      {"@type":"Question","name":"Pourquoi ?","acceptedAnswer":{"@type":"Answer","text":"Peu d’outils pour 175M de nouveaux pères/an. Nous voulons combler ce vide avec une ressource fiable, inclusive et actionnable."}},
-      {"@type":"Question","name":"Objectif principal ?","acceptedAnswer":{"@type":"Answer","text":"Soutien concret & place pleine du père. L’idée est d’outiller et de valoriser les pères dans leur rôle, au quotidien."}},
-      {"@type":"Question","name":"Égalité parentale ?","acceptedAnswer":{"@type":"Answer","text":"Équilibrée & partagée. L’app favorise des pratiques plus justes et des conversations ouvertes au sein du couple."}},
-      {"@type":"Question","name":"Long terme ?","acceptedAnswer":{"@type":"Answer","text":"Convaincre France/Europe/Monde. Nous déploierons le contenu et les partenariats localement avec des experts."}},
-
-      {"@type":"Question","name":"Seulement une app ?","acceptedAnswer":{"@type":"Answer","text":"Non, aussi un média engagé. Nous publions des témoignages, des interviews et des formats courts utiles."}},
-      {"@type":"Question","name":"Où suivre ?","acceptedAnswer":{"@type":"Answer","text":"@tobefather.off (IG/LinkedIn/Facebook/TikTok). Les annonces produits et appels à bêta y seront partagés en priorité."}},
-      {"@type":"Question","name":"Témoignages ?","acceptedAnswer":{"@type":"Answer","text":"Oui, au centre du projet. Vos retours orientent notre roadmap et nos contenus."}},
-      {"@type":"Question","name":"Podcast/YouTube ?","acceptedAnswer":{"@type":"Answer","text":"Prévu (YouTube/Spotify/Deezer). Une émission est en préparation pour approfondir les sujets avec des experts."}},
-
-      {"@type":"Question","name":"Quels pros ?","acceptedAnswer":{"@type":"Answer","text":"Médecins & spécialistes en activité (voir story PRO TBF). Nous collaborons avec des obstétriciens, sages-femmes, psychologues, sexologues et juristes."}},
-      {"@type":"Question","name":"Liés à des mutuelles/institutions ?","acceptedAnswer":{"@type":"Answer","text":"Pas encore, en travail. Nous préparons des offres adaptées aux entreprises et organismes."}},
-      {"@type":"Question","name":"Entreprises ?","acceptedAnswer":{"@type":"Answer","text":"Oui, avantage RH possible. Accompagnement des salariés pères, prévention et qualité de vie au travail."}},
-      {"@type":"Question","name":"Pro de santé ?","acceptedAnswer":{"@type":"Answer","text":"Oui: contact@tobefather.com. Nous serions heureux d’échanger sur des collaborations."}},
-
-      {"@type":"Question","name":"Données protégées ?","acceptedAnswer":{"@type":"Answer","text":"Oui, priorité absolue; jamais revendues sans accord. Chiffrement en transit et bonnes pratiques de sécurité."}},
-      {"@type":"Question","name":"RGPD ?","acceptedAnswer":{"@type":"Answer","text":"Oui, respect strict. Vous pouvez demander l’export ou la suppression de vos données."}},
-      {"@type":"Question","name":"Partage d’infos perso ?","acceptedAnswer":{"@type":"Answer","text":"Non, sauf choix explicite (ex. autre parent). Vous contrôlez les autorisations de partage à tout moment."}},
-      {"@type":"Question","name":"Anonymat ?","acceptedAnswer":{"@type":"Answer","text":"Non (app personnalisée), mais données sécurisées. Nous minimisons les données collectées et évitons tout traçage superflu."}},
-
-      {"@type":"Question","name":"International ?","acceptedAnswer":{"@type":"Answer","text":"Oui, progressivement avec experts locaux. Nous adapterons le contenu aux spécificités culturelles et légales."}},
-      {"@type":"Question","name":"Traductions ?","acceptedAnswer":{"@type":"Answer","text":"Anglais, espagnol, allemand (priorité). D’autres langues seront ajoutées ensuite."}},
-      {"@type":"Question","name":"Version web ?","acceptedAnswer":{"@type":"Answer","text":"Pas au début; installation requise. L’objectif est une expérience mobile soignée avant d’envisager une version web."}},
-      {"@type":"Question","name":"Couples séparés ?","acceptedAnswer":{"@type":"Answer","text":"Oui, prévu. L’app proposera des options pour mieux s’organiser à distance et partager l’essentiel."}}
-    ]
-  }
-  </script>
 </head>
-<body>
-  <header>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between">
-      <a href="index.html" class="btn ghost" aria-label="Retour à l’accueil" style="display:flex; align-items:center; gap:.5rem">
-        <img src="logo.png" alt="Logo To Be Father" class="logo-img"> Accueil
-      </a>
-      <a href="index.html#waitlist" class="btn primary">Être prévenu du lancement</a>
-    </div>
+<body class="page">
+
+<header class="navbar glass" role="banner">
+  <div class="inner container">
+    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
+      <img src="assets/icons/logo.svg" alt="Logo TBF" width="120" height="24" loading="lazy">
+      <span class="sr-only">To Be Father</span>
+    </a>
+    <nav class="menu" role="navigation" aria-label="Navigation principale">
+      <a class="btn btn-secondary" href="index.html">Accueil</a>
+      <a class="btn btn-secondary" href="faq.html" aria-current="page">FAQ</a>
+      <a class="btn btn-secondary" href="pricing.html">Prix</a>
+      <a class="btn btn-primary" href="mailto:contact@tobefather.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="section">
+    <h1>FAQ</h1>
+    <p class="muted">Réponses courtes. Accès rapide.</p>
   </header>
 
-  <main class="container" style="padding:24px 20px 80px">
-    <div class="card" style="padding:20px">
-      <h1>FAQ</h1>
-      <p class="lead">Les réponses rapides sont suivies de précisions — aucune question n’a été retirée.</p>
+  <section class="faq">
+    <div class="accordion">
 
-      <!-- Application & fonctionnalités -->
-      <div class="group">
-        <h3>Application & fonctionnalités</h3>
-        <details open><summary>Quand sortira l’application ?</summary><div><p><strong>Juillet 2026.</strong></p><p>Une phase de <em>bêta privée</em> sera ouverte en amont pour tester l’ergonomie, affiner les contenus et valider la fiabilité des checklists.</p></div></details>
-        <details><summary>iOS & Android ?</summary><div><p><strong>Oui (App Store & Google Play).</strong></p><p>Nous visons une expérience fluide, des performances solides et la parité de fonctionnalités entre plateformes.</p></div></details>
-        <details><summary>Utilisable dès la grossesse ?</summary><div><p><strong>Absolument.</strong></p><p>À chaque étape (1er, 2e, 3e trimestre puis post-partum), vous recevez des conseils adaptés et des rappels utiles.</p></div></details>
-        <details><summary>Espace pour échanger ?</summary><div><p><strong>Souhaité à terme.</strong></p><p>Nous préparerons une modération bienveillante, des salons thématiques et des outils anti-spam avant l’ouverture.</p></div></details>
+      <h2 class="kicker">Application & fonctionnalités</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a1">
+          <span class="label">Quand sortira l’application ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a1" hidden>Juillet 2026.</div>
       </div>
 
-      <!-- Prix & abonnements -->
-      <div class="group">
-        <h3>Prix & abonnements</h3>
-        <details><summary>Version gratuite ?</summary><div><p><strong>Oui, essentiels + IA (5 questions/jour).</strong></p><p>Idéal pour découvrir l’app et couvrir les besoins fréquents sans engagement.</p></div></details>
-        <details><summary>Prix premium ?</summary><div><p><strong>4,39 € / mois.</strong></p><p>Le Premium soutient la qualité éditoriale, l’hébergement sécurisé et les validations par des spécialistes.</p></div></details>
-        <details><summary>Que comprend l’abonnement ?</summary><div><p><strong>IA illimitée, suivi avancé, contenus & outils exclusifs.</strong></p><p>Vous débloquez des checklists intelligentes, des vues analytiques et des fonctionnalités en avant-première.</p></div></details>
-        <details><summary>Offre annuelle ?</summary><div><p><strong>35,99 € / an (−20%).</strong></p><p>Équivalent à 3,59 €/mois, pour un accès complet et économique toute l’année.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a2">
+          <span class="label">iOS et Android ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a2" hidden>Oui, App Store et Google Play.</div>
       </div>
 
-      <!-- Cible & utilité -->
-      <div class="group">
-        <h3>Cible & utilité</h3>
-        <details><summary>À qui ?</summary><div><p><strong>À tous les pères; multiculturel & personnalisé.</strong></p><p>Solo, en couple, marié, homosexuel, recomposé… l’app s’adapte à votre réalité.</p></div></details>
-        <details><summary>Utile pour les mamans ?</summary><div><p><strong>Oui, rééquilibre la charge mentale.</strong></p><p>Le partage des rappels et des to-dos encourage une organisation plus équitable.</p></div></details>
-        <details><summary>Déjà papa ?</summary><div><p><strong>Oui.</strong></p><p>Les contenus s’ajustent si vous attendez un 2ᵉ/3ᵉ enfant ou si votre aîné grandit.</p></div></details>
-        <details><summary>Différences vs autres apps ?</summary><div><p><strong>1er assistant personnel de paternité, IA spécialisée qui s’adapte en temps réel.</strong></p><p>Des conseils clairs, contextualisés, validés par des experts, pensés pour <em>les pères</em>.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a3">
+          <span class="label">Utilisable dès la grossesse ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a3" hidden>Oui, dès l’annonce.</div>
       </div>
 
-      <!-- Vision & valeurs -->
-      <div class="group">
-        <h3>Vision & valeurs</h3>
-        <details><summary>Pourquoi ?</summary><div><p><strong>Peu d’outils pour 175M de nouveaux pères/an.</strong></p><p>Nous apportons une ressource fiable, inclusive et actionnable pour combler ce manque.</p></div></details>
-        <details><summary>Objectif principal ?</summary><div><p><strong>Soutien concret & place pleine du père.</strong></p><p>Aider à se sentir utile, légitime et serein dans ce rôle clé.</p></div></details>
-        <details><summary>Égalité parentale ?</summary><div><p><strong>Équilibrée & partagée.</strong></p><p>Nos outils favorisent un quotidien plus juste pour tout le foyer.</p></div></details>
-        <details><summary>Long terme ?</summary><div><p><strong>Convaincre France/Europe/Monde.</strong></p><p>Déploiement progressif avec des partenaires locaux et des experts de terrain.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a4">
+          <span class="label">Espace d’échange entre pères ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a4" hidden>Prévu à terme.</div>
       </div>
 
-      <!-- Média & réseaux sociaux -->
-      <div class="group">
-        <h3>Média & réseaux sociaux</h3>
-        <details><summary>Seulement une app ?</summary><div><p><strong>Non, aussi un média engagé.</strong></p><p>Interviews, témoignages, formats courts et dossiers de fond.</p></div></details>
-        <details><summary>Où suivre ?</summary><div><p><strong>@tobefather.off (IG/LinkedIn/Facebook/TikTok).</strong></p><p>Abonnez-vous pour les annonces produits et la future bêta.</p></div></details>
-        <details><summary>Témoignages ?</summary><div><p><strong>Oui, au centre du projet.</strong></p><p>Vos expériences réelles guident nos priorités et nos contenus.</p></div></details>
-        <details><summary>Podcast/YouTube ?</summary><div><p><strong>Prévu (YouTube/Spotify/Deezer).</strong></p><p>Une émission pour approfondir les thèmes avec des spécialistes.</p></div></details>
+      <h2 class="kicker">Prix & abonnements</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a5">
+          <span class="label">Version gratuite ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a5" hidden>Oui. IA jusqu’à 5 questions/jour.</div>
       </div>
 
-      <!-- Partenariats & experts -->
-      <div class="group">
-        <h3>Partenariats & experts</h3>
-        <details><summary>Quels pros ?</summary><div><p><strong>Médecins & spécialistes en activité (voir story PRO TBF).</strong></p><p>Obstétriciens, sages-femmes, psychologues, sexologues et juristes.</p></div></details>
-        <details><summary>Liés à des mutuelles/institutions ?</summary><div><p><strong>Pas encore, en travail.</strong></p><p>Nous structurons des offres adaptées aux besoins des organismes.</p></div></details>
-        <details><summary>Entreprises ?</summary><div><p><strong>Oui, avantage RH possible.</strong></p><p>Accompagnement des salariés pères, prévention et QVT.</p></div></details>
-        <details><summary>Pro de santé ?</summary><div><p><strong>Oui: contact@tobefather.com.</strong></p><p>Écrivez-nous pour participer, valider du contenu ou co-créer des parcours.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a6">
+          <span class="label">Prix premium ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a6" hidden>4,39 €/mois.</div>
       </div>
 
-      <!-- Sécurité & confidentialité -->
-      <div class="group">
-        <h3>Sécurité & confidentialité</h3>
-        <details><summary>Données protégées ?</summary><div><p><strong>Oui, priorité absolue; jamais revendues sans accord.</strong></p><p>Chiffrement en transit, principes de minimisation des données et contrôles réguliers.</p></div></details>
-        <details><summary>RGPD ?</summary><div><p><strong>Oui, respect strict.</strong></p><p>Export / suppression sur demande et transparence sur les traitements.</p></div></details>
-        <details><summary>Partage d’infos perso ?</summary><div><p><strong>Non, sauf choix explicite (ex. autre parent).</strong></p><p>Vous gardez la main sur chaque autorisation de partage.</p></div></details>
-        <details><summary>Anonymat ?</summary><div><p><strong>Non (app personnalisée), mais données sécurisées.</strong></p><p>Nous évitons tout traçage superflu et limitons la collecte au strict nécessaire.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a7">
+          <span class="label">Offre annuelle ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a7" hidden>35,99 €/an (-20 %).</div>
       </div>
 
-      <!-- Développement futur -->
-      <div class="group">
-        <h3>Développement futur</h3>
-        <details><summary>International ?</summary><div><p><strong>Oui, progressivement avec experts locaux.</strong></p><p>Les contenus seront adaptés aux pratiques et aux législations de chaque pays.</p></div></details>
-        <details><summary>Traductions ?</summary><div><p><strong>Anglais, espagnol, allemand (priorité).</strong></p><p>D’autres langues arriveront selon la demande.</p></div></details>
-        <details><summary>Version web ?</summary><div><p><strong>Pas au début; installation requise.</strong></p><p>Nous nous concentrons d’abord sur la meilleure expérience mobile possible.</p></div></details>
-        <details><summary>Couples séparés ?</summary><div><p><strong>Oui, prévu.</strong></p><p>Partage sélectif d’informations essentielles et coordination simplifiée.</p></div></details>
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a8">
+          <span class="label">Que comprend l’abonnement ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a8" hidden>IA illimitée, fonctions avancées, contenus exclusifs.</div>
       </div>
 
-      <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center">
-        <a class="btn ghost" href="index.html#features">← Retour fonctionnalités</a>
-        <a class="btn primary" href="index.html#pricing">Voir les prix</a>
+      <h2 class="kicker">Cible & utilité</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a9">
+          <span class="label">À qui s’adresse TBF ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a9" hidden>À tous les pères, expérience personnalisée.</div>
       </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a10">
+          <span class="label">Utile pour les mamans ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a10" hidden>Impact familial positif.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a11">
+          <span class="label">Déjà papa ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a11" hidden>Oui, s’adapte à votre situation.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a12">
+          <span class="label">En quoi TBF est différent ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a12" hidden>Assistant personnel de paternité, IA spécialisée, conseils temps réel.</div>
+      </div>
+
+      <h2 class="kicker">Vision & valeurs</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a13">
+          <span class="label">Pourquoi TBF ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a13" hidden>175 M de pères/an, peu d’outils dédiés.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a14">
+          <span class="label">Objectif principal ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a14" hidden>Place, utilité, soutien des pères.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a15">
+          <span class="label">Égalité parentale ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a15" hidden>Parentalité partagée.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a16">
+          <span class="label">Projets long terme ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a16" hidden>Convaincre familles, Europe, monde.</div>
+      </div>
+
+      <h2 class="kicker">Média & réseaux sociaux</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a17">
+          <span class="label">TBF seulement une app ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a17" hidden>Aussi un média engagé.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a18">
+          <span class="label">Où suivre ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a18" hidden>Instagram, LinkedIn, Facebook, TikTok : @tobefather.off.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a19">
+          <span class="label">Témoignages de pères ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a19" hidden>Oui.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a20">
+          <span class="label">Podcast/YouTube ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a20" hidden>Prévu.</div>
+      </div>
+
+      <h2 class="kicker">Partenariats & experts</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a21">
+          <span class="label">Avec quels pros ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a21" hidden>Médecins et spécialistes en activité.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a22">
+          <span class="label">Liens avec mutuelles/institutions ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a22" hidden>En travail.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a23">
+          <span class="label">Offre entreprise RH ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a23" hidden>Oui, souhaitée.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a24">
+          <span class="label">Collaborer comme soignant ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a24" hidden><a href="mailto:contact@tobefather.com">contact@tobefather.com</a>.</div>
+      </div>
+
+      <h2 class="kicker">Sécurité & confidentialité</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a25">
+          <span class="label">Données protégées ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a25" hidden>Oui. Jamais revendues.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a26">
+          <span class="label">RGPD ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a26" hidden>Oui, strict.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a27">
+          <span class="label">Partage d’infos perso ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a27" hidden>Non, sauf choix explicite.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a28">
+          <span class="label">Anonyme ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a28" hidden>Non, app personnalisée, données sécurisées.</div>
+      </div>
+
+      <h2 class="kicker">Développement futur</h2>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a29">
+          <span class="label">International ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a29" hidden>Oui, progressivement.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a30">
+          <span class="label">Traductions ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a30" hidden>Anglais, espagnol, allemand d’abord.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a31">
+          <span class="label">Version web ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a31" hidden>Pas au début.</div>
+      </div>
+
+      <div class="item glass" aria-expanded="false">
+        <button class="q" aria-expanded="false" aria-controls="a32">
+          <span class="label">Section couples séparés ?</span>
+          <img class="icon" src="assets/icons/arrow.svg" alt="" aria-hidden="true">
+        </button>
+        <div class="a" id="a32" hidden>Oui, prévue.</div>
+      </div>
+
     </div>
-  </main>
+  </section>
+</main>
+
+<footer class="container">
+  <div class="footer-inner glass card shadow-hover">
+    <img src="assets/icons/logo.svg" alt="Logo To Be Father" width="140" height="28" loading="lazy">
+    <div class="social">
+      <span class="tag">@tobefather.off</span>
+      <a class="btn btn-secondary" href="mailto:contact@tobefather.com">contact@tobefather.com</a>
+    </div>
+    <small class="muted">© 2025 To Be Father. Design “liquid glass” iOS‑26. Respect RGPD.</small>
+  </div>
+</footer>
+<div class="bg-layer" aria-hidden="true"></div>
+<script src="app.js" defer></script>
+
+
+<nav class="tabbar glass" role="navigation" aria-label="Barre d’onglets">
+  <a class="tab" href="index.html"><img src="assets/icons/logo.svg" alt="" aria-hidden="true"><span>Accueil</span></a>
+  <a class="tab" href="faq.html" aria-current="page"><img src="assets/icons/arrow.svg" alt="" aria-hidden="true"><span>FAQ</span></a>
+  <a class="tab" href="pricing.html"><img src="assets/icons/check.svg" alt="" aria-hidden="true"><span>Prix</span></a>
+  <a class="tab" href="mailto:contact@tobefather.com"><img src="assets/icons/x.svg" alt="" aria-hidden="true"><span>Contact</span></a>
+</nav>
+
 </body>
 </html>
