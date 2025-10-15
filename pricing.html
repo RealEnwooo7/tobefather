@@ -1,35 +1,21 @@
 <!doctype html>
 <html lang="fr">
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0E1420">
+<meta name="theme-color" content="#162034">
 <title>To Be Father — l’IA copilote de la paternité</title>
-<meta name="description" content="De la grossesse aux premières années : conseils, checklists, rappels et IA spécialisée pour les pères.">
-<link rel="preload" as="image" href="assets/images/bg-dark-glass-1.jpg">
+<meta name="description" content="To Be Father accompagne les pères de la grossesse aux premières années. IA spécialisée, checklists, rappels, contenus. Lancement juillet 2026.">
+<link rel="preload" as="image" href="assets/images/bg-anim.gif">
 <link rel="stylesheet" href="ios-glass.css">
 <link rel="stylesheet" href="styles.css">
-<style>
-@font-face{
-  font-family: "Inter";
-  src: local("Inter"), local("Inter Regular"), local("Inter-Medium"), local("Inter Medium");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
-
+<style>@font-face{ font-family:"Inter"; src: local("Inter"); font-weight: 400 900; font-style: normal; font-display: swap; }</style>
 </head>
 <body class="page">
 
-
 <header class="navbar glass" role="banner">
   <div class="inner container">
-    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
-      <img src="assets/icons/logo.svg" alt="Logo TBF" width="120" height="24" loading="lazy">
-      <span class="sr-only">To Be Father</span>
-    </a>
+    <a class="brand" href="index.html" aria-label="Aller à l’accueil"><img src="assets/icons/logo.svg" alt="Logo TBF" width="120" height="24" loading="lazy"><span class="sr-only">To Be Father</span></a>
     <nav class="links" role="navigation" aria-label="Navigation">
       <a href="index-desktop.html">Accueil</a>
       <a href="faq.html">FAQ</a>
@@ -40,7 +26,7 @@
   </div>
   <div id="menu" class="mobile-menu" aria-hidden="true">
     <div class="panel glass edge">
-      <a href="index-mobile.html">Accueil</a>
+      <a href="index-mobile.html">Accueil (Mobile)</a>
       <a href="faq.html">FAQ</a>
       <a href="pricing.html">Prix</a>
       <a href="mailto:contact@tobefather.com">Contact</a>
@@ -48,104 +34,48 @@
   </div>
 </header>
 
+<main>
 
-<main class="container">
-  <header class="section centered">
-    <div class="glass edge card shadow-hover" role="region" aria-label="Choix de facturation">
+  <header class="section center">
+    <div class="glass edge card">
       <p class="kicker upper">Prix</p>
-      <div class="centered">
-        <!-- Liquid glass toggle -->\n        <button aria-label="Basculer facturation" aria-pressed="false" class="liquid-toggle" id="billing-toggle">\n          <div class="indicator"></div>\n          <div class="window"><div class="bubble"></div></div>\n          <span class="lt-label lt-month">Mensuel</span>\n          <span class="lt-label lt-year">Annuel</span>\n        </button>\n        <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>\n          <filter id="lt-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -10" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs></svg>
-          <button id="toggle-monthly" role="tab" aria-pressed="true" aria-controls="plans">Mensuel</button>
-          <button id="toggle-yearly" role="tab" aria-pressed="false" aria-controls="plans">Annuel</button>
-        </div>
-      </div>
-      <p class="muted" style="margin-top:10px">Respecte les tarifs : <strong>4,39 €/mois</strong> et <strong>35,99 €/an (-20 %)</strong>.</p>
+      <p class="muted">Respecte les tarifs : <strong>4,39 €/mois</strong> et <strong>35,99 €/an (−20 %)</strong>.</p>
     </div>
   </header>
 
-  <section id="plans" class="pricing-grid">
-    <article class="plan glass edge card shadow-hover" aria-label="Gratuit">
+  <section class="pricing-modern container">
+    <article class="pricing-card light">
       <h3>Gratuit</h3>
-      <div class="price" data-price data-monthly="0 €" data-yearly="0 €">0 €</div>
-      <div class="features">
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> IA : <strong>5 questions/jour</strong></div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Checklists & rappels de base</div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Conseils essentiels</div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Accès média</div>
-        <div class="feature"><img class="check" src="assets/icons/arrow.svg" alt="" aria-hidden="true"> Communauté : <strong>à venir</strong></div>
-      </div>
-      <div class="spacer"></div>
-      <a class="btn btn-secondary" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Commencer Gratuitement</a>
+      <div class="pricing-price">0 €</div>
+      <div class="pricing-sub">Les fonctionnalités essentielles pour commencer</div>
+      <ul class="list">
+        <li><span class="check-dot"></span> Accès aux fonctionnalités essentielles</li>
+        <li><span class="check-dot"></span> IA personnalisée (5 questions/jour)</li>
+        <li><span class="check-dot"></span> Suivi de base grossesse/enfant</li>
+        <li><span class="check-dot"></span> Conseils généraux</li>
+        <li><span class="check-dot"></span> Support communautaire</li>
+      </ul>
+      <div class="pricing-cta"><a class="btn btn-secondary" href="#">Être informé du lancement</a></div>
     </article>
 
-    <article class="plan glass edge card shadow-hover" aria-label="Premium">
+    <article class="pricing-card tint">
+      <span class="badge">Recommandé</span>
       <h3>Premium</h3>
-      <div class="price" data-price data-monthly="4,39 €/mois" data-yearly="35,99 €/an">4,39 €/mois</div>
-      <div class="features">
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> IA <strong>illimitée</strong> et personnalisée</div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Toutes fonctionnalités avancées de suivi</div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Contenus exclusifs + outils pratiques</div>
-        <div class="feature"><img class="check" src="assets/icons/check.svg" alt="" aria-hidden="true"> Priorité nouveautés + support</div>
-      </div>
-      <div class="spacer"></div>
-      <a class="btn btn-primary shimmer" href="#"><img class="icon" src="assets/icons/btn-logo.svg" alt="" aria-hidden="true"> Passer en Premium</a>
+      <div class="pricing-price">4,39 €/mois</div>
+      <div class="pricing-sub">Annuel : 3,59 €/mois (−20 %)</div>
+      <ul class="list">
+        <li><span class="check-dot"></span> Accès illimité à notre IA personnalisée</li>
+        <li><span class="check-dot"></span> Toutes les fonctionnalités avancées de suivi</li>
+        <li><span class="check-dot"></span> Contenus exclusifs et outils pratiques</li>
+        <li><span class="check-dot"></span> Conseils experts personnalisés</li>
+        <li><span class="check-dot"></span> Support prioritaire</li>
+        <li><span class="check-dot"></span> Partage avec l’autre parent (à terme)</li>
+      </ul>
+      <div class="pricing-cta"><a class="btn btn-primary" href="#">Être informé du lancement</a></div>
     </article>
   </section>
 
-  <section class="table glass edge card shadow-hover">
-    <h2>Comparaison</h2>
-    <div class="spacer"></div>
-    <div class="table-responsive">
-      <table aria-label="Tableau de comparaison des offres">
-        <thead>
-          <tr>
-            <th>Fonctionnalité</th>
-            <th class="center">Premium</th>
-            <th class="center">Gratuit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>IA personnalisée</td>
-            <td class="center">✅</td>
-            <td class="center">✔️ (5/j)</td>
-          </tr>
-          <tr>
-            <td>Checklists & rappels</td>
-            <td class="center">✅</td>
-            <td class="center">✔️ (Base)</td>
-          </tr>
-          <tr>
-            <td>Suivi grossesse → premières années</td>
-            <td class="center">✅</td>
-            <td class="center">✔️</td>
-          </tr>
-          <tr>
-            <td>Conseils d’experts</td>
-            <td class="center">✅</td>
-            <td class="center">✔️ (Essentiels)</td>
-          </tr>
-          <tr>
-            <td>Communauté de pères</td>
-            <td class="center">⏳ Bientôt</td>
-            <td class="center">⏳ Bientôt</td>
-          </tr>
-          <tr>
-            <td>Partage calendrier</td>
-            <td class="center">✅</td>
-            <td class="center">–</td>
-          </tr>
-          <tr>
-            <td>Contenus exclusifs</td>
-            <td class="center">✅</td>
-            <td class="center">–</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 </main>
-
 
 <footer class="container">
   <div class="footer-inner glass edge card shadow-hover">
@@ -161,9 +91,4 @@
 
 <div class="bg-layer" aria-hidden="true"></div>
 <img src="assets/images/bg-anim.gif" class="bg-anim" alt="" aria-hidden="true">
-
-
-
-
-</body>
-</html>
+</body></html>
