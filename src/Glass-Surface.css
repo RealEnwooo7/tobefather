@@ -1,0 +1,130 @@
+/* ===== Base ===== */
+.glass-surface {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 180ms ease-out, box-shadow 180ms ease-out, background-color 180ms ease-out;
+}
+
+/* couche filtre (inchangée) */
+.glass-surface__filter {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    /* garde à 0 si le SVG ne doit pas être visible en overlay */
+    z-index: -1;
+}
+
+/* contenu (inchangé) */
+.glass-surface__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: inherit;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Effet principal (moins violent) ===== */
+.glass-surface--svg {
+    /* gèle + léger et plus neutre */
+    --glass-frost: 0.06;
+    /* 0 → 1 (opacité du fond “givré”) */
+    --glass-saturation: 1.1;
+    /* avant 1.8 */
+    --glass-brightness: 1.06;
+    /* avant 1.1–1.2 */
+
+    background: light-dark(hsl(0 0% 100% / var(--glass-frost)),
+            hsl(0 0% 0% / var(--glass-frost)));
+
+    /* conserve ton filtre SVG mais moins saturé */
+    backdrop-filter: var(--filter-id, url(#glass-filter)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness));
+    -webkit-backdrop-filter: blur(8px) saturate(var(--glass-saturation)) brightness(var(--glass-brightness));
+
+    /* ombres simplifiées et plus douces */
+    box-shadow:
+        0 2px 10px rgba(17, 17, 26, 0.06),
+        0 10px 28px rgba(17, 17, 26, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Variante “soft” à activer en plus si besoin: <div class="glass-surface glass-surface--svg glass-surface--soft"> */
+.glass-surface--soft {
+    --glass-frost: 0.04;
+    --glass-saturation: 1.05;
+    --glass-brightness: 1.03;
+    box-shadow:
+        0 2px 8px rgba(17, 17, 26, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* ===== Fallback (moins fort) ===== */
+.glass-surface--fallback {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px) saturate(1.2) brightness(1.06);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2) brightness(1.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 6px 18px rgba(31, 38, 135, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+    .glass-surface--fallback {
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(8px) saturate(1.15) brightness(1.08);
+        -webkit-backdrop-filter: blur(8px) saturate(1.15) brightness(1.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+}
+
+/* Fallback dur si pas de backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .glass-surface--fallback {
+        background: rgba(255, 255, 255, 0.24);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.10),
+            inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    }
+
+    .glass-surface--fallback::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: inherit;
+        z-index: -1;
+    }
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+    @media (prefers-color-scheme: dark) {
+        .glass-surface--fallback {
+            background: rgba(0, 0, 0, 0.38);
+        }
+
+        .glass-surface--fallback::before {
+            background: rgba(255, 255, 255, 0.04);
+        }
+    }
+}
+
+/* Focus */
+.glass-surface:focus-visible {
+    outline: 2px solid light-dark(#007aff, #0a84ff);
+    outline-offset: 2px;
+}
