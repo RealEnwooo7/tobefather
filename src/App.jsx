@@ -311,10 +311,7 @@ function HomeInline() {
                   </div>
                   <div className="price">
                     <span className="amount">€4.99</span>
-                    <span className="per">/mo</span>
-                    <span className="h10"> ou </span>
-                    <span className="amount2">€35,99/an</span>
-                    <span>(-20%)</span>
+                    <span className="per"> /mois</span>
                   </div>
                   <ul className="features">
                     <li><i></i>IA illimitée (chat et vocal)</li>
