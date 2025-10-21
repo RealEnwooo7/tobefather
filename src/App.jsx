@@ -225,28 +225,28 @@ function HomeInline() {
 
               <h4 style={{ fontWeight: 700, marginTop: "2rem" }}>- L’essence du projet</h4>
               <h5 style={{ color: "white", fontWeight: 400 }}>
-                • Revaloriser la place du père.<br />• Accompagner de la grossesse aux premières années.<br />• Renforcer le lien
-                familial.
+                • Revaloriser la place du père<br />• Accompagner de la grossesse aux premières années<br />• Renforcer le lien
+                familial
               </h5>
 
               <h4 style={{ fontWeight: 700, marginTop: "1.5rem" }}>- L’innovation</h4>
               <h5 style={{ color: "white", fontWeight: 400 }}>
-                • IA émotionnelle et conseils personnalisés.<br />• Suivi évolutif des besoins réels.
+                • IA émotionnelle et conseils personnalisés<br />• Suivi évolutif des besoins réels
               </h5>
 
               <h4 style={{ fontWeight: 700, marginTop: "1.5rem" }}>- L’application</h4>
               <h5 style={{ color: "white", fontWeight: 400 }}>
-                • Espace clair et sécurisé.<br />• Check-lists, calendrier, notifications.<br />• Gratuit + Premium.
+                • Espace clair et sécurisé<br />• Check-lists, calendrier, notifications<br />• Gratuit + Premium
               </h5>
 
               <h4 style={{ fontWeight: 700, marginTop: "1.5rem" }}>- Le média</h4>
               <h5 style={{ color: "white", fontWeight: 400 }}>
-                • Instagram, LinkedIn.<br />• Contenus vulgarisés et témoignages.
+                • Instagram, LinkedIn<br />• Contenus accessibles et témoignages
               </h5>
 
               <h4 style={{ fontWeight: 700, marginTop: "1.5rem" }}>- La vision</h4>
               <h5 style={{ color: "white", fontWeight: 400 }}>
-                • Soutenir les pères, c’est soutenir la famille.<br />• Parentalité équilibrée et partagée.
+                • Soutenir les pères, c’est soutenir la famille<br />• Parentalité équilibrée et partagée
               </h5>
             </div>
           </section>
