@@ -115,7 +115,6 @@ function HomeInline() {
           <nav className={`nav-links ${menuOpen ? "show" : ""}`} onClick={() => setMenuOpen(false)}>
             <a href="#top">Accueil</a>
             <a href="#apropos">À propos</a>
-            <a href="#fondateurs">Fondateurs</a>
             <a href="#faq">FAQ</a>
             <a href="#prix">Prix</a>
           </nav>
