@@ -1024,3 +1024,31 @@ body {
   font-size: clamp(14.5px, 2vw, 16px); color:#d7eaff;
 }
 
+/* ---------------- */
+
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.features-list li i {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #50a1d4; /* ta couleur néon */
+  margin-top: 6px;
+}
