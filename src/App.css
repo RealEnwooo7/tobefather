@@ -796,7 +796,7 @@ body {
 
 .features li {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 10px;
   opacity: .95;
 }
