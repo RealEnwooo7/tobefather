@@ -131,7 +131,7 @@ function HomeInline() {
           {/* Hero */}
           <section className="hero" id="top">
             <div className="hero-inner">
-              <img className="logo" src="/assets/images/logo.png" alt="To Be Father" />
+              {/* <img className="logo" src="/assets/images/logo.png" alt="To Be Father" /> */}
 
               <span className="gradient-text">La première application qui réinvente la paternité</span>
 
